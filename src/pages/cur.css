@@ -1,0 +1,120 @@
+.frame {
+    background-color: #d4c3c3;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .frame .div {
+    background-color: #d4c3c3;
+    height: 1024px;
+    position: relative;
+    width: 1440px;
+  }
+  
+  .frame .group {
+    height: 101px;
+    left: 441px;
+    position: absolute;
+    top: 835px;
+    width: 515px;
+  }
+  
+  .frame .overlap-group-wrapper {
+    height: 101px;
+    width: 517px;
+  }
+  
+  .frame .overlap-group {
+    background-color: #d9d9d9;
+    border-radius: 100px;
+    height: 101px;
+    position: relative;
+    width: 515px;
+  }
+  
+  .frame .text-wrapper {
+    color: #ba1313;
+    font-family: "Port Lligat Sans-Regular", Helvetica;
+    font-size: 54px;
+    font-weight: 400;
+    height: 79px;
+    left: 34px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 8px;
+    width: 441px;
+  }
+  
+  .frame .group-wrapper {
+    height: 639px;
+    left: 757px;
+    position: absolute;
+    top: 86px;
+    width: 639px;
+  }
+  
+  .frame .div-wrapper {
+    height: 639px;
+    width: 641px;
+  }
+  
+  .frame .overlap-group-2 {
+    height: 639px;
+    position: relative;
+    width: 639px;
+  }
+  
+  .frame .rectangle {
+    background-color: #d9d9d9;
+    border-radius: 50px;
+    height: 635px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 639px;
+  }
+  
+  .frame .to-perform-bicep {
+    color: #000000;
+    font-family: "Port Lligat Sans-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    left: 30px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 42px;
+    width: 595px;
+  }
+  
+  .frame .span {
+    color: #000000;
+    font-family: "Port Lligat Sans-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  
+  .frame .text-wrapper-2 {
+    font-size: 24px;
+  }
+  
+  .frame .text-wrapper-3 {
+    font-size: 28px;
+  }
+  
+  .frame .group-2 {
+    background-image: url(./BicepsCurl.png);
+    background-position: 50% 50%;
+    background-size: cover;
+    height: 568px;
+    left: 0;
+    position: absolute;
+    top: 120px;
+    width: 724px;
+  }
+  

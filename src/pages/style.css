@@ -1,88 +1,101 @@
-.landing-page {
-    background-color: #fa9595;
-    height: 1080px;
-    width: 1920px;
+.desktop {
+    background-color: #fb9696;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
   }
   
-  .landing-page .overlap {
-    height: 870px;
+  .desktop .overlap-wrapper {
+    background-color: #fb9696;
+    height: 1024px;
+    overflow: hidden;
+    width: 1440px;
+  }
+  
+  .desktop .overlap {
+    height: 521px;
+    left: 53px;
     position: relative;
-    top: 26px;
+    top: 183px;
+    width: 1398px;
   }
   
-  .landing-page .overlap-group {
-    height: 870px;
-    left: 0;
+  .desktop .group {
+    height: 132px;
+    left: 649px;
     position: absolute;
-    top: 0;
-    width: 1920px;
+    top: 389px;
+    width: 440px;
   }
   
-  .landing-page .image {
-    height: 870px;
-    left: 0;
-    mix-blend-mode: darken;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 758px;
-  }
-  
-  .landing-page .text-wrapper {
-    color: #000000;
-    font-family: "Inika-Regular", Helvetica;
-    font-size: 72px;
-    font-weight: 400;
-    left: 702px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    text-align: center;
-    top: 323px;
-    width: 1218px;
-  }
-  
-  .landing-page .div {
-    color: #000000;
-    font-family: "Inika-Regular", Helvetica;
-    font-size: 64px;
-    font-weight: 400;
-    left: 738px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    text-align: center;
-    top: 465px;
-    width: 1145px;
-  }
-  
-  .landing-page .group {
-    height: 112px;
-    left: 1125px;
-    position: absolute;
-    top: 602px;
-    width: 374px;
-  }
-  
-  .landing-page .div-wrapper {
+  .desktop .overlap-group {
     background-color: #1a1717;
-    border-radius: 100px;
-    height: 112px;
+    border-radius: 117.86px;
+    height: 132px;
     position: relative;
-    width: 372px;
+    width: 438px;
   }
   
-  .landing-page .text-wrapper-2 {
+  .desktop .text-wrapper {
     color: #fe0d0d;
     font-family: "Port Lligat Sans-Regular", Helvetica;
-    font-size: 58px;
+    font-size: 68.4px;
     font-weight: 400;
-    height: 109px;
-    left: 9px;
+    height: 128px;
+    left: 11px;
     letter-spacing: 0;
     line-height: normal;
     position: absolute;
     text-align: center;
-    top: 3px;
-    width: 363px;
+    top: 4px;
+    width: 428px;
+  }
+  
+  .desktop .div {
+    height: 455px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1398px;
+  }
+  
+  .desktop .image {
+    height: 455px;
+    left: 0;
+    mix-blend-mode: darken;
+    position: absolute;
+    top: 0;
+    width: 450px;
+  }
+  
+  .desktop .p {
+    color: #000000;
+    font-family: "Inika-Regular", Helvetica;
+    font-size: 58.8px;
+    font-weight: 400;
+    left: 382px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 67px;
+    width: 1016px;
+    padding-top: 50px;
+  }
+  
+  .desktop .text-wrapper-2 {
+    color: #000000;
+    font-family: "Inika-Regular", Helvetica;
+    font-size: 49.9px;
+    font-weight: 400;
+    left: 422px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 197px;
+    width: 892px;
+    
+
   }

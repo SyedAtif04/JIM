@@ -1,0 +1,115 @@
+.squats {
+    background-color: #d3c2c2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .squats .div {
+    background-color: #d3c2c2;
+    height: 1024px;
+    position: relative;
+    width: 1440px;
+  }
+  
+  .squats .group {
+    height: 101px;
+    left: 426px;
+    position: absolute;
+    top: 847px;
+    width: 517px;
+  }
+  
+  .squats .overlap-group {
+    background-color: #d9d9d9;
+    border-radius: 100px;
+    height: 101px;
+    position: relative;
+    width: 515px;
+  }
+  
+  .squats .text-wrapper {
+    color: #ba1313;
+    font-family: "Port Lligat Sans-Regular", Helvetica;
+    font-size: 54px;
+    font-weight: 400;
+    height: 79px;
+    left: 34px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 8px;
+    width: 441px;
+  }
+  
+  .squats .overlap {
+    height: 773px;
+    left: 37px;
+    position: absolute;
+    top: 52px;
+    width: 1346px;
+  }
+  
+  .squats .overlap-wrapper {
+    height: 773px;
+    left: 670px;
+    position: absolute;
+    top: 0;
+    width: 676px;
+  }
+  
+  .squats .overlap-2 {
+    height: 773px;
+    position: relative;
+    width: 674px;
+  }
+  
+  .squats .rectangle {
+    background-color: #d9d9d9;
+    border-radius: 50px;
+    height: 762px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 674px;
+  }
+  
+  .squats .to-perform-squats {
+    color: #000000;
+    font-family: "Port Lligat Sans-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    left: 36px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 19px;
+    width: 628px;
+  }
+  
+  .squats .span {
+    color: #000000;
+    font-family: "Port Lligat Sans-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  
+  .squats .text-wrapper-2 {
+    font-size: 24px;
+  }
+  
+  .squats .text-wrapper-3 {
+    font-size: 28px;
+  }
+  
+  .squats .image {
+    height: 593px;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 44px;
+    width: 670px;
+  }

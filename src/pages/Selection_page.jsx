@@ -8,29 +8,37 @@ export const Selection_page = () => {
     <div className="selection">
       <div className="overlap">
         <img className="image" alt="Image" src="image-3.png" />
+        <Link to="/shoulder">
+          <button>
         <div className="button">
           <div className="overlap-group">
             <div className="text-wrapper">SHOULDER-PRESS</div>
             <div className="rectangle" />
           </div>
-        </div>
+        </div></button></Link>
         <div className="overlap-wrapper">
+        <Link to="/tri">
+          <button>
           <div className="div">
             <div className="text-wrapper-2">TRICEP-PUSHDOWNS</div>
             <div className="rectangle" />
-          </div>
+          </div></button></Link>
         </div>
         <div className="overlap-group-wrapper">
+        <Link to="/squat">
+          <button>
           <div className="overlap-group">
             <div className="text-wrapper">SQUATS</div>
             <div className="rectangle" />
+          </div></button> </Link>       
           </div>
-        </div>
         <div className="div-wrapper">
+        <Link to="/bic">
+          <button>
           <div className="overlap-group">
             <div className="text-wrapper">DUMBBELL-CURLS</div>
             <div className="rectangle" />
-          </div>
+          </div></button></Link>
         </div>
       </div>
       <div className="return">
