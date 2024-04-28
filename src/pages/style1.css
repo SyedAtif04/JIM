@@ -1,8 +1,12 @@
-.selection {
+body {
     background-color: #808080;
+  }
+.selection {
+    background-color:#d9d9d9;
     height: 100%;
     position: relative;
     width: 100%;
+    size: 100%;
   }
   
   .selection .overlap {
@@ -11,19 +15,23 @@
     position: absolute;
     top: 185px;
     width: 1407px;
+    
   }
   
   .selection .image {
-    height: 600px;
-    left: 336px;
+    height: 1000px;
+    left: 470px;
     mix-blend-mode: darken;
     object-fit: cover;
     position: absolute;
-    top: 0;
+    top: 100px;
     width: 798px;
+    background-image: url(./select.png);
+    background-repeat: no-repeat;
   }
   
-  .selection .button {
+  .selection.button {
+    background-color: #6a6161;
     height: 188px;
     left: 0;
     position: absolute;
@@ -32,13 +40,13 @@
     width: 515px;
   }
   
-  .selection .overlap-group {
+  /* .selection .overlap-group {
     border-radius: 100px;
     height: 188px;
     position: relative;
     width: 513px;
   }
-  
+   */
   .selection .text-wrapper {
     color: #000000;
     font-family: "Port Lligat Sans-Regular", Helvetica;
@@ -50,8 +58,9 @@
     line-height: normal;
     position: absolute;
     text-align: center;
-    top: 5px;
+    top: 25px;
     width: 513px;
+    padding-top: 0px;
   }
   
   .selection .rectangle {
@@ -63,6 +72,7 @@
     position: absolute;
     top: 0;
     width: 513px;
+    
   }
   
   .selection .overlap-wrapper {
@@ -74,11 +84,12 @@
     width: 519px;
   }
   
-  .selection .div {
+  /* .selection .div {
     height: 188px;
     position: relative;
     width: 517px;
-  }
+    /* background-color: #808080; */
+  
   
   .selection .text-wrapper-2 {
     color: #000000;
@@ -91,7 +102,7 @@
     line-height: normal;
     position: absolute;
     text-align: center;
-    top: 0;
+    top: 25px;
     width: 516px;
   }
   
@@ -121,11 +132,11 @@
     width: 432px;
   }
   
-  .selection .overlap-2 {
+  /* .selection .overlap-2 {
     height: 125px;
     position: relative;
     width: 430px;
-  }
+  } */
   
   .selection .rectangle-2 {
     background-color: #d9d9d9;
@@ -140,7 +151,7 @@
   .selection .text-wrapper-3 {
     color: #000000;
     font-family: "Port Lligat Sans-Regular", Helvetica;
-    font-size: 64px;
+    font-size: 50px;
     font-weight: 400;
     height: 91px;
     left: 0;
@@ -148,6 +159,6 @@
     line-height: normal;
     position: absolute;
     text-align: center;
-    top: 34px;
+    top: 20px;
     width: 430px;
-  }  
+  }

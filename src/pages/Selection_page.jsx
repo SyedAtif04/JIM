@@ -5,14 +5,15 @@ import { Link } from 'react-router-dom';
 
 export const Selection_page = () => {
   return (
+    <body>
     <div className="selection">
       <div className="overlap">
-        <img className="image" alt="Image" src="image-3.png" />
+        <img className="image" alt="Image" src="" />
         <Link to="/shoulder">
           <button>
         <div className="button">
           <div className="overlap-group">
-            <div className="text-wrapper">SHOULDER-PRESS</div>
+            <div className="text-wrapper">SHOULDER PRESS</div>
             <div className="rectangle" />
           </div>
         </div></button></Link>
@@ -20,7 +21,7 @@ export const Selection_page = () => {
         <Link to="/tri">
           <button>
           <div className="div">
-            <div className="text-wrapper-2">TRICEP-PUSHDOWNS</div>
+            <div className="text-wrapper-2">TRICEP PUSHDOWNS</div>
             <div className="rectangle" />
           </div></button></Link>
         </div>
@@ -28,7 +29,7 @@ export const Selection_page = () => {
         <Link to="/squat">
           <button>
           <div className="overlap-group">
-            <div className="text-wrapper">SQUATS</div>
+            <div className="text-wrapper">WEIGHTED SQUATS</div>
             <div className="rectangle" />
           </div></button> </Link>       
           </div>
@@ -36,7 +37,7 @@ export const Selection_page = () => {
         <Link to="/bic">
           <button>
           <div className="overlap-group">
-            <div className="text-wrapper">DUMBBELL-CURLS</div>
+            <div className="text-wrapper">DUMBBELL CURLS</div>
             <div className="rectangle" />
           </div></button></Link>
         </div>
@@ -54,5 +55,6 @@ export const Selection_page = () => {
       </div>
     </div>
     </div>
+    </body>
   );
 };
