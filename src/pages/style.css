@@ -1,0 +1,88 @@
+.landing-page {
+    background-color: #fa9595;
+    height: 1080px;
+    width: 1920px;
+  }
+  
+  .landing-page .overlap {
+    height: 870px;
+    position: relative;
+    top: 26px;
+  }
+  
+  .landing-page .overlap-group {
+    height: 870px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1920px;
+  }
+  
+  .landing-page .image {
+    height: 870px;
+    left: 0;
+    mix-blend-mode: darken;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 758px;
+  }
+  
+  .landing-page .text-wrapper {
+    color: #000000;
+    font-family: "Inika-Regular", Helvetica;
+    font-size: 72px;
+    font-weight: 400;
+    left: 702px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 323px;
+    width: 1218px;
+  }
+  
+  .landing-page .div {
+    color: #000000;
+    font-family: "Inika-Regular", Helvetica;
+    font-size: 64px;
+    font-weight: 400;
+    left: 738px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 465px;
+    width: 1145px;
+  }
+  
+  .landing-page .group {
+    height: 112px;
+    left: 1125px;
+    position: absolute;
+    top: 602px;
+    width: 374px;
+  }
+  
+  .landing-page .div-wrapper {
+    background-color: #1a1717;
+    border-radius: 100px;
+    height: 112px;
+    position: relative;
+    width: 372px;
+  }
+  
+  .landing-page .text-wrapper-2 {
+    color: #fe0d0d;
+    font-family: "Port Lligat Sans-Regular", Helvetica;
+    font-size: 58px;
+    font-weight: 400;
+    height: 109px;
+    left: 9px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 3px;
+    width: 363px;
+  }

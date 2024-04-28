@@ -1,0 +1,153 @@
+.selection {
+    background-color: #808080;
+    height: 100%;
+    position: relative;
+    width: 100%;
+  }
+  
+  .selection .overlap {
+    height: 600px;
+    left: 225px;
+    position: absolute;
+    top: 185px;
+    width: 1407px;
+  }
+  
+  .selection .image {
+    height: 600px;
+    left: 336px;
+    mix-blend-mode: darken;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 798px;
+  }
+  
+  .selection .button {
+    height: 188px;
+    left: 0;
+    position: absolute;
+    top: 29px;
+    transition: all 0.2s ease;
+    width: 515px;
+  }
+  
+  .selection .overlap-group {
+    border-radius: 100px;
+    height: 188px;
+    position: relative;
+    width: 513px;
+  }
+  
+  .selection .text-wrapper {
+    color: #000000;
+    font-family: "Port Lligat Sans-Regular", Helvetica;
+    font-size: 58px;
+    font-weight: 400;
+    height: 183px;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 5px;
+    width: 513px;
+  }
+  
+  .selection .rectangle {
+    background-color: #6a6161;
+    border-radius: 100px;
+    height: 188px;
+    left: 0;
+    mix-blend-mode: darken;
+    position: absolute;
+    top: 0;
+    width: 513px;
+  }
+  
+  .selection .overlap-wrapper {
+    height: 188px;
+    left: 0;
+    position: absolute;
+    top: 412px;
+    transition: all 0.2s ease;
+    width: 519px;
+  }
+  
+  .selection .div {
+    height: 188px;
+    position: relative;
+    width: 517px;
+  }
+  
+  .selection .text-wrapper-2 {
+    color: #000000;
+    font-family: "Port Lligat Sans-Regular", Helvetica;
+    font-size: 54px;
+    font-weight: 400;
+    height: 183px;
+    left: 1px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 516px;
+  }
+  
+  .selection .overlap-group-wrapper {
+    height: 188px;
+    left: 892px;
+    position: absolute;
+    top: 29px;
+    transition: all 0.2s ease;
+    width: 515px;
+  }
+  
+  .selection .div-wrapper {
+    height: 188px;
+    left: 892px;
+    position: absolute;
+    top: 407px;
+    transition: all 0.2s ease;
+    width: 515px;
+  }
+  
+  .selection .return {
+    height: 125px;
+    left: 777px;
+    position: absolute;
+    top: 890px;
+    width: 432px;
+  }
+  
+  .selection .overlap-2 {
+    height: 125px;
+    position: relative;
+    width: 430px;
+  }
+  
+  .selection .rectangle-2 {
+    background-color: #d9d9d9;
+    border-radius: 100px;
+    height: 97px;
+    left: 71px;
+    position: absolute;
+    top: 0;
+    width: 290px;
+  }
+  
+  .selection .text-wrapper-3 {
+    color: #000000;
+    font-family: "Port Lligat Sans-Regular", Helvetica;
+    font-size: 64px;
+    font-weight: 400;
+    height: 91px;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 34px;
+    width: 430px;
+  }  
