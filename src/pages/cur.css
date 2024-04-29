@@ -45,7 +45,7 @@
     line-height: normal;
     position: absolute;
     text-align: center;
-    top: 8px;
+    top: 15px;
     width: 441px;
   }
   
@@ -71,7 +71,7 @@
   .frame .rectangle {
     background-color: #d9d9d9;
     border-radius: 50px;
-    height: 635px;
+    height: 650px;
     left: 0;
     position: absolute;
     top: 0;
@@ -81,22 +81,25 @@
   .frame .to-perform-bicep {
     color: #000000;
     font-family: "Port Lligat Sans-Regular", Helvetica;
-    font-size: 32px;
-    font-weight: 400;
+    font-size: 33px;
+    font-weight: 500;
     left: 30px;
     letter-spacing: 0;
     line-height: normal;
     position: absolute;
-    top: 42px;
+    top: -10px;
     width: 595px;
+    font-style: italic;
   }
   
   .frame .span {
     color: #000000;
-    font-family: "Port Lligat Sans-Regular", Helvetica;
-    font-size: 32px;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 35px;
     font-weight: 400;
     letter-spacing: 0;
+    font-weight: 1000;
+    font-style: normal;
   }
   
   .frame .text-wrapper-2 {

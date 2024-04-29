@@ -40,13 +40,13 @@
     line-height: normal;
     position: absolute;
     text-align: center;
-    top: 8px;
+    top: 20px;
     width: 441px;
   }
   
   .shoulder-press .overlap-wrapper {
     height: 635px;
-    left: 663px;
+    left: 900px;
     position: absolute;
     top: 99px;
     width: 641px;
@@ -55,9 +55,10 @@
   .shoulder-press .overlap {
     background-color: #d9d9d9;
     border-radius: 50px;
-    height: 635px;
+    height: 740px;
     position: relative;
     width: 639px;
+    left: 100px;
   }
   
   .shoulder-press .to-perform-a {
@@ -66,35 +67,44 @@
     font-size: 32px;
     font-weight: 400;
     left: 34px;
-    letter-spacing: 0;
+    letter-spacing: 0.5px;
     line-height: normal;
     position: absolute;
-    top: 19px;
+    top: 0px;
     width: 595px;
+    bottom: 100px;
   }
   
   .shoulder-press .span {
     color: #000000;
-    font-family: "Port Lligat Sans-Regular", Helvetica;
-    font-size: 32px;
-    font-weight: 400;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 33px;
+    font-weight: 2000;
     letter-spacing: 0;
+    bottom: 50px;
+    
   }
   
   .shoulder-press .text-wrapper-2 {
-    font-size: 24px;
+    font-size: 20px;
   }
   
   .shoulder-press .text-wrapper-3 {
-    font-size: 28px;
+    font-size: 33px;
+    font-style: italic;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
   }
   
   .shoulder-press .image {
-    height: 669px;
-    left: 55px;
-    object-fit: cover;
+    height: 1500px;
+    left: 100px;
+    object-fit: fill;
     position: absolute;
-    top: 76px;
-    width: 595px;
+    top: 330px;
+    width: 1000px;
+    background-image: url("./ShoulderPress.png");
+    background-repeat: no-repeat;
+    size: 100%;
   }
   

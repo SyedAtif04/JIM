@@ -20,13 +20,12 @@ export const Bic_curl = () => {
                 <span className="span">To perform Bicep Curls: </span>
                 <span className="text-wrapper-2"> </span>
                 <span className="text-wrapper-3">
-                  1.Stand up straight with a dumbbell in each hand, arms fully extended down by your sides, and palms
-                  facing forward.2.Keep your elbows close to your torso and exhale as you curl the weights upward by
-                  bending your elbows, ensuring only your forearms move.3.Continue curling until your biceps are fully
+                <br />1.Stand up straight with a dumbbell in each hand, arms fully extended down by your sides, and palms
+                  facing forward.<br />2.Keep your elbows close to your torso and exhale as you curl the weights upward by
+                  bending your elbows, ensuring only your forearms move.<br />3.Continue curling until your biceps are fully
                   contracted and the dumbbells are at shoulder level. Hold this position for a moment, squeezing your
-                  biceps.4.Inhale as you slowly lower the dumbbells back to the starting position, maintaining control
-                  and keeping tension on your biceps.5.Repeat for the desired number of repetitions.(It is recommended
-                  you start with less weight and more reps as it will help in muscle growth)
+                  biceps.<br />4.Inhale as you slowly lower the dumbbells back to the starting position, maintaining control
+                  and keeping tension on your biceps.<br />5.Repeat for the desired number of repetitions.
                 </span>
               </p>
             </div>
