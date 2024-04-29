@@ -3,7 +3,11 @@ import "./style1.css";
 import { Link } from 'react-router-dom';
 
 
+
+
 export const Selection_page = () => {
+ 
+
   return (
     <body>
     <div className="selection">
