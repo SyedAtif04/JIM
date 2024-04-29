@@ -1,14 +1,34 @@
-import React from "react";
-import "./sq.css";
+import React, { useState, useEffect} from 'react';
+import axios from 'axios';
+import './sq.css';
+const url = 'http://localhost:3000/';
+
 
 export const Squat = () => {
+  const [response, setResponse] = useState('');
+
+  const handleClick = async () => {
+    try {
+      const res = await axios.post('http://127.0.0.1:5000/squats_squats');
+      if (res.data.success) {
+        setResponse('Squats detection started successfully.');
+      } else {
+        setResponse('Error: ' + res.data.error);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setResponse('Error: ' + error.message);
+    }
+  };
   return (
     <div className="squats">
       <div className="div">
         <div className="group">
+          <button onClick={handleClick}>
           <div className="overlap-group">
             <div className="text-wrapper">Start Recording</div>
           </div>
+          </button>
         </div>
         <div className="overlap">
           <div className="overlap-wrapper">

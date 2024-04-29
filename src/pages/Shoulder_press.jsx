@@ -9,7 +9,7 @@ export const Shoulder = () => {
 
   const handleClick = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/shoulder_press');
+      const res = await axios.post('http://127.0.0.1:5000/shoulder_press');
       if (res.data.success) {
         setResponse('Shoulder press detection started successfully.');
       } else {
