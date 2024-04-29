@@ -79,7 +79,7 @@
   .squats .to-perform-squats {
     color: #000000;
     font-family: "Port Lligat Sans-Regular", Helvetica;
-    font-size: 32px;
+    font-size: 3px;
     font-weight: 400;
     left: 36px;
     letter-spacing: 0;
@@ -98,11 +98,11 @@
   }
   
   .squats .text-wrapper-2 {
-    font-size: 35px;
+    font-size: 10px;
   }
   
   .squats .text-wrapper-3 {
-    font-size: 33px;
+    font-size: 27px;
     font-style: italic;
     font-weight: 100;
   }
