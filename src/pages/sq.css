@@ -46,7 +46,7 @@
   
   .squats .overlap {
     height: 773px;
-    left: 37px;
+    left: 300px;
     position: absolute;
     top: 52px;
     width: 1346px;
@@ -115,4 +115,5 @@
     top: 44px;
     width: 810px;
     background-image: url("./squat.png");
+    left: -500px;
   }

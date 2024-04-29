@@ -11,6 +11,7 @@
     height: 1024px;
     position: relative;
     width: 1440px;
+    
   }
   
   .shoulder-press .group {
@@ -46,9 +47,9 @@
   
   .shoulder-press .overlap-wrapper {
     height: 635px;
-    left: 900px;
+    left: 800px;
     position: absolute;
-    top: 99px;
+    top: 50px;
     width: 641px;
   }
   
@@ -97,14 +98,14 @@
   }
   
   .shoulder-press .image {
-    height: 1500px;
-    left: 100px;
+    height: 800px;
+    left: -100px;
     object-fit: fill;
     position: absolute;
-    top: 330px;
-    width: 1000px;
+    top: 30px;
+    width: 800px;
     background-image: url("./ShoulderPress.png");
     background-repeat: no-repeat;
-    size: 100%;
+    background-size: 100% 100%;
   }
   

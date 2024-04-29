@@ -18,19 +18,13 @@ export const Squat = () => {
                 <span className="span">To perform Squats </span>
                 <span className="text-wrapper-2"> </span>
                 <span className="text-wrapper-3">
-                <br />1.Start Position: Stand with feet shoulder-width apart, toes slightly turned out, back straight.
-                <br />2.Descend: Bend knees, push hips back as if sitting into a chair, keeping chest up, back straight. Lower until thighs parallel to ground.
-                <br />3.Engage Core: Keep core muscles engaged throughout for spine stabilization.
-                <br />4.Knees Alignment: Ensure knees aligned with toes, not extending beyond.
-                <br />5.Drive Through Heels: Press through heels to return to start, exhale during movement.
-                <br />6.Finish Position: Stand straight, fully extend hips and knees.
-                <br />7.Repeat: Perform desired repetitions.
-
-
-
-
-
-
+                  <br/>Setup: Stand in front of cable machine with straight bar attached to high pulley. Grip bar with overhand grip, hands shoulder-width apart, and extend arms downward.
+                  <br/>Positioning: Keep feet shoulder-width apart, knees slightly bent, maintain straight posture with engaged core for stability.
+                  <br/>Execution: Keep upper arms stationary and close to body. Exhale, push bar down by straightening arms until fully extended. Contract triceps throughout.
+                  <br/>Controlled Movement: Inhale as bar returns slowly to starting position, maintaining control. Avoid letting weight stack slam down.
+                  <br/>Repetitions and Sets: Aim for 3-4 sets of 8-12 reps. Adjust weight to fit strength level. Rest 60-90 seconds between sets.
+                  <br/>Form and Safety: Maintain proper form to engage muscles and prevent injury. Consider working with certified trainer for beginners.
+                  <br/>Start Light: Begin with less weight and more reps to aid muscle growth.
                 </span>
               </p>
             </div>
