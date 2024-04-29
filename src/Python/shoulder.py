@@ -3,6 +3,7 @@ import cv2
 import mediapipe as mp
 import numpy as np
 
+
 app = Flask(__name__)
 
 # Function to calculate the angle between three points
@@ -20,7 +21,7 @@ def calculate_angle(a, b, c):
     return angle
 
 # Function to run shoulder press detection
-def run_shoulder_press_detection():
+def shoulder_press():
     mp_pose = mp.solutions.pose
     mp_drawing = mp.solutions.drawing_utils
 
@@ -134,7 +135,7 @@ def run_shoulder_press_detection():
             
             #resizeable window
             cv2.namedWindow('Shoulder Press Detection', cv2.WINDOW_NORMAL)
-            cv2.resizeWindow('Shoulder Press Detection', 1800, 1200)  # Set the initial size of the window
+            cv2.resizeWindow('Shoulder Press Detection', 5000000, 620000)  # Set the initial size of the window
 
             if cv2.waitKey(10) & 0xFF == ord('q'):
                 break
@@ -143,13 +144,15 @@ def run_shoulder_press_detection():
     cap.release()
     cv2.destroyAllWindows()
 
-@app.route('/shoulder-press', methods=['POST'])
+@app.route('/shoulder_press', methods=['POST'])
 def run_detection():
     try:
-        run_shoulder_press_detection()
+        shoulder_press()
         return jsonify({'success': True})
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+

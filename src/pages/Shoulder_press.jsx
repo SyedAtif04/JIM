@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import './should.css';
+const url = 'http://localhost:3000/';
+
 
 export const Shoulder = () => {
   const [response, setResponse] = useState('');
 
   const handleClick = async () => {
     try {
-      const res = await axios.post('/shoulder-press');
+      const res = await axios.post('http://localhost:5000/shoulder_press');
       if (res.data.success) {
         setResponse('Shoulder press detection started successfully.');
       } else {
@@ -35,7 +37,7 @@ export const Shoulder = () => {
               <span className="span">To perform a Dumbbell Shoulder press: </span>
               <span className="text-wrapper-2"> </span>
               <span className="text-wrapper-3">
-                1. Start by sitting on a bench with back support, or stand with your feet shoulder-width apart.<br />
+                <br/>1. Start by sitting on a bench with back support, or stand with your feet shoulder-width apart.<br />
                 2. Hold a dumbbell in each hand at shoulder height, palms facing forward, and elbows bent.<br />
                 3. Engage your core muscles to stabilize your body.<br />
                 4. Press the dumbbells upward until your arms are fully extended overhead, but not locked out at the elbows.<br />
@@ -52,3 +54,5 @@ export const Shoulder = () => {
     </div>
   );
 };
+
+console.log('URL:', url);
