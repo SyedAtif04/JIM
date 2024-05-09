@@ -1,6 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
+import ReactPlayer from 'react-player';
 import './sq.css';
+import { Link } from 'react-router-dom';
 const url = 'http://localhost:3000/';
 
 
@@ -21,36 +23,56 @@ export const Squat = () => {
     }
   };
   return (
-    <div className="squats">
+    <div className="desktop">
       <div className="div">
-        <div className="group">
-          <button onClick={handleClick}>
-          <div className="overlap-group">
-            <div className="text-wrapper">Start Recording</div>
-          </div>
-          </button>
-        </div>
-        <div className="overlap">
-          <div className="overlap-wrapper">
-            <div className="overlap-2">
-              <div className="rectangle" />
-              <p className="to-perform-squats">
-                <span className="span">To perform Squats </span>
-                <span className="text-wrapper-2"> </span>
-                <span className="text-wrapper-3">
-                  <br/>1.Setup: Stand in front of cable machine with straight bar attached to high pulley. Grip bar with overhand grip, hands shoulder-width apart, and extend arms downward.
-                  <br/>2.Positioning: Keep feet shoulder-width apart, knees slightly bent, maintain straight posture with engaged core for stability.
-                  <br/>3.Execution: Keep upper arms stationary and close to body. Exhale, push bar down by straightening arms until fully extended. Contract triceps throughout.
-                  <br/>4.Controlled Movement: Inhale as bar returns slowly to starting position, maintaining control. Avoid letting weight stack slam down.
-                  <br/>5.Repetitions and Sets: Aim for 3-4 sets of 8-12 reps. Adjust weight to fit strength level. Rest 60-90 seconds between sets.
-                  <br/>6.Form and Safety: Maintain proper form to engage muscles and prevent injury. Consider working with certified trainer for beginners.
-                  <br/>7.Start Light: Begin with less weight and more reps to aid muscle growth.
-                </span>
-              </p>
+        <svg className="m" alt="M" src="s-m.png" />
+        <div className="text-wrapper">Hitler1945</div>
+        <div className="overlap-group">
+          <div className="overlap">
+            <p className="p">
+              A squat is a strength exercise in which the trainee lowers their hips from a standing position and then
+              stands back up. During the descent, the hip and knee joints flex while the ankle joint dorsiflexes;
+              conversely the hip and knee joints extend and the ankle joint plantarflexes when standing up.
+            </p>
+            <div className="rectangle" />
+            <div className="frame">
+              <svg className="vector" alt="palyb" src="vector.svg" />
+              <div className="text-wrapper-2">Start</div>
             </div>
           </div>
-          <img className="image" alt="Image" src="squat.png" />
+          <svg className="image" alt="exer" src="image.png" />
         </div>
+        <div className="text-wrapper-3">Squats</div>
+        <svg className="male-user" alt="Male user" src="male-user.png" />
+        <svg className="line" alt="Line" src="line-2.svg" />
+        <svg className="img" alt="Line" src="line-3.svg" />
+        <div className="customer-wrapper">
+          <svg className="customer" alt="Customer" src="cust.png" />
+        </div>
+        <div className="book-wrapper">
+          <svg className="book" alt="Book" src="book-2.png" />
+        </div>
+        <div className="barbell-wrapper">
+          <svg className="barbell" alt="Barbell" src="barbell-2.png" />
+        </div>
+        <div className="overlap-2">
+          <div className="text-wrapper-4">Profile</div>
+          <div className="text-wrapper-4">Profile</div>
+        </div>
+        <div className="overlap-3">
+          <div className="text-wrapper-5">My Workouts</div>
+          <div className="text-wrapper-5">My Workouts</div>
+        </div>
+        <div className="overlap-4">
+          <div className="text-wrapper-6">About</div>
+          <div className="text-wrapper-6">About</div>
+        </div>
+          <Link to="/selection">
+            <button>
+              <svg className="vector-2" alt="Rb" src="return.svg" />
+              <svg className="m-2" alt="M" src="image.svg" />
+            </button>
+          </Link>
       </div>
     </div>
   );

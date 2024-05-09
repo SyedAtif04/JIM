@@ -53,7 +53,7 @@
   font-family: "Inter-SemiBold", Helvetica;
   font-size: 27.6px;
   font-weight: 600;
-  left: 138px;
+  left: -35px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
@@ -198,7 +198,7 @@
 
 .selection-page .male-user {
   height: 108px;
-  left: -200px;
+  left: -180px;
   position: absolute;
   top: 61px;
   width: 108px;
@@ -207,7 +207,7 @@
 
 .selection-page .line {
   height: 2260px;
-  left: 348px;
+  left: 160px;
   position: absolute;
   top: 0;
   width: 9px;
@@ -216,7 +216,7 @@
 
 .selection-page .img {
   height: 9px;
-  left: -150px;
+  left: -200px;
   position: absolute;
   top: 208px;
   width: 300px;
@@ -227,7 +227,7 @@
   background-image: url(./cust.png);
   background-size: 100% 100%;
   height: 48px;
-  left: 51px;
+  left: -150px;
   position: absolute;
   top: 278px;
   width: 48px;
@@ -245,7 +245,7 @@
   background-image: url(./book.png);
   background-size: 100% 100%;
   height: 48px;
-  left: 47px;
+  left: -150px;
   position: absolute;
   top: 479px;
   width: 53px;
@@ -263,7 +263,7 @@
   background-image: url(./barbell.png);
   background-size: 100% 100%;
   height: 67px;
-  left: 36px;
+  left: -160px;
   position: absolute;
   top: 370px;
   width: 76px;
@@ -279,7 +279,7 @@
 
 .selection-page .overlap-7 {
   height: 18px;
-  left: 120px;
+  left: -60px;
   position: absolute;
   top: 294px;
   width: 88px;
@@ -301,7 +301,7 @@
 
 .selection-page .overlap-8 {
   height: 17px;
-  left: 126px;
+  left: -60px;
   position: absolute;
   top: 395px;
   width: 179px;
@@ -323,7 +323,7 @@
 
 .selection-page .overlap-9 {
   height: 18px;
-  left: 126px;
+  left: -60px;
   position: absolute;
   top: 495px;
   width: 83px;

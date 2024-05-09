@@ -6,7 +6,7 @@ export const LandingPage = () => {
   return (
     <div className="landing-page">
       <div className="div">
-      <img className="m" alt="" src="./M.png"/>
+      <svg className="m" alt="" src="./M.png"/>
         <div className="overlap-group">
           <Link to="/selection">
             <button>
