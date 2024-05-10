@@ -30,7 +30,7 @@ export  const LoginPage = () => {
 	return (
 		<div className="LoginPage">
 			<div>
-				<svg alt="jimlogo"  src="./s-m.png"/>
+				<svg className="s-m" alt="jimlogo"  src="./s-m.png"/>
 			</div>
 
 			<h2>WorkOut With JIM!!!</h2>
