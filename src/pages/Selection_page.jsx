@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from 'react-helmet';
 import "./style1.css";
 import { Link } from 'react-router-dom';
 
@@ -10,6 +11,10 @@ export const Selection_page = () => {
 
   return (
     <div className="selection-page">
+    <Helmet>
+    <title>JIM | SELECTION PAGE</title>
+    <link rel="canonical" href="src\pages\s-m.png" />
+  </Helmet>
     <div className="div">
       <svg className="s-m" alt="" src="s-m.png" />
       <div className="text-wrapper">Workouts</div>

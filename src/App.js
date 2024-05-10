@@ -6,6 +6,7 @@ import { Squat } from "./pages/Squats";
 import { Bic_curl } from "./pages/Bicep";
 import { Shoulder } from "./pages/Shoulder_press";
 import { Tricep } from "./pages/Triceps";
+import { LoginPage } from "./pages/Login_Page";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/bic" element={<Bic_curl />} />
         <Route path="/squat" element={<Squat />} />
         <Route path="/tri" element={<Tricep />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Router>
   );

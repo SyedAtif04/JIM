@@ -1,8 +1,10 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactPlayer from 'react-player';
+// import { Helmet } from 'react-helmet';
 import './sq.css';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 const url = 'http://localhost:3000/';
 
 
@@ -24,6 +26,10 @@ export const Squat = () => {
   };
   return (
     <div className="desktop">
+      <Helmet>
+    <title>JIM | SQUATS</title>
+    <svg className="h-m" alt="s-m" src="s-m.png"/>
+  </Helmet>
       <div className="div">
         <svg className="m" alt="M" src="s-m.png" />
         <div className="text-wrapper">Hitler1945</div>
