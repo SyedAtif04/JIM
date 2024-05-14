@@ -9,7 +9,7 @@
 .desktop .div {
   background-color: #1a1818;
   height: 1145px;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
   width: 1440px;
 }
@@ -28,11 +28,11 @@
   font-family: "Inter-SemiBold", Helvetica;
   font-size: 27.6px;
   font-weight: 600;
-  left: 138px;
+  left: -35px;
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
-  top: 101px;
+  top: 103px;
   white-space: nowrap;
 }
 
@@ -138,7 +138,7 @@
 
 .desktop .male-user {
   height: 108px;
-  left: 15px;
+  left: -180px;
   position: absolute;
   top: 61px;
   width: 108px;
@@ -146,8 +146,8 @@
 }
 
 .desktop .line {
-  height: 1145px;
-  left: 348px;
+  height: 2260px;
+  left: 160px;
   position: absolute;
   top: 0;
   width: 9px;
@@ -156,7 +156,7 @@
 
 .desktop .img {
   height: 9px;
-  left: 28px;
+  left: -175px;
   position: absolute;
   top: 208px;
   width: 300px;
@@ -167,7 +167,7 @@
   background-image: url(./cust.png);
   background-size: 100% 100%;
   height: 48px;
-  left: 51px;
+  left: -150px;
   position: absolute;
   top: 278px;
   width: 48px;
@@ -185,7 +185,7 @@
   background-image: url(./book.png);
   background-size: 100% 100%;
   height: 48px;
-  left: 47px;
+  left: -150px;
   position: absolute;
   top: 479px;
   width: 53px;
@@ -203,7 +203,7 @@
   background-image: url(./barbell.png);
   background-size: 100% 100%;
   height: 67px;
-  left: 36px;
+  left: -160px;
   position: absolute;
   top: 370px;
   width: 76px;
@@ -219,7 +219,7 @@
 
 .desktop .overlap-2 {
   height: 18px;
-  left: 120px;
+  left: -60px;
   position: absolute;
   top: 294px;
   width: 88px;
@@ -241,7 +241,7 @@
 
 .desktop .overlap-3 {
   height: 17px;
-  left: 126px;
+  left: -60px;
   position: absolute;
   top: 395px;
   width: 179px;
@@ -263,7 +263,7 @@
 
 .desktop .overlap-4 {
   height: 18px;
-  left: 126px;
+  left: -60px;
   position: absolute;
   top: 495px;
   width: 83px;

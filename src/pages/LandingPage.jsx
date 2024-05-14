@@ -8,7 +8,7 @@ export const LandingPage = () => {
       <div className="div">
       <svg className="m" alt="" src="./M.png"/>
         <div className="overlap-group">
-          <Link to="/selection">
+          <Link to="/login">
             <button>
               <div className="text-wrapper">Let’s get started!</div>
             </button>

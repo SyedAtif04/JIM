@@ -31,7 +31,7 @@
 
 .LoginPage h2 {
     text-align: center;
-    color: #8371FA;
+    color: #8371Fa;
 }
 
 .LoginPage p {
@@ -99,7 +99,7 @@
 }
 
 .LoginPage .container {
-    background-color: #000000;
+    background-color: #1A1818;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
         0 10px 10px rgba(0, 0, 0, 0.22);

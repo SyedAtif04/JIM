@@ -20,18 +20,18 @@ export const Selection_page = () => {
       <div className="text-wrapper">Workouts</div>
       <div className="text-wrapper-2">Hi Hitler1945,</div>
       <div className="text-wrapper-3">Hitler1945</div>
+          <Link to="/squat">
+            <button>
       <div className="overlap">
         <div className="text-wrapper-4">Squats</div>
         <svg className="image" alt="" src="image.png" />
         <div className="overlap-group">
-          <Link to="/squat">
-            <button>
               <div className="text-wrapper-5">Start</div>
               <svg className="vector" alt="" src="vector.svg" />
-            </button>
-          </Link>
         </div>
       </div>
+            </button>
+          </Link>
       <div className="overlap-2">
         <div className="text-wrapper-4">Squats</div>
         <svg className="image" alt="" src="image-6.png" />
