@@ -1,6 +1,9 @@
 import React,{ useState, useEffect} from "react";
 import "./cur.css";
 import axios from 'axios';
+import ReactPlayer from 'react-player';
+import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 const url = 'http://localhost:3000/';
 
 
@@ -21,38 +24,71 @@ export const Bic_curl = () => {
     }
   };
   return (
-    <div className="frame">
+    <div className="curl">
+            <Helmet>
+    <title>JIM | BICEP CURL</title>
+    <svg className="h-m" alt="s-m" src="s-m.png"/>
+  </Helmet>
       <div className="div">
-        <div className="group">
-          <div className="overlap-group-wrapper">
-            <button onClick={handleClick}>
-            <div className="overlap-group">
-              <div className="text-wrapper">Start Recording</div>
-            </div>
-            </button>
-          </div>
-        </div>
-        <div className="group-wrapper">
-          <div className="div-wrapper">
-            <div className="overlap-group-2">
-              <div className="rectangle" />
-              <p className="to-perform-bicep">
-                <span className="span">To perform Bicep Curls: </span>
-                <span className="text-wrapper-2"> </span>
-                <span className="text-wrapper-3">
-                <br />1.Stand up straight with a dumbbell in each hand, arms fully extended down by your sides, and palms
-                  facing forward.<br />2.Keep your elbows close to your torso and exhale as you curl the weights upward by
-                  bending your elbows, ensuring only your forearms move.<br />3.Continue curling until your biceps are fully
-                  contracted and the dumbbells are at shoulder level. Hold this position for a moment, squeezing your
-                  biceps.<br />4.Inhale as you slowly lower the dumbbells back to the starting position, maintaining control
-                  and keeping tension on your biceps.<br />5.Repeat for the desired number of repetitions.
-                </span>
-              </p>
+        <svg className="m" alt="M" src="m.svg" />
+        <div className="overlap">
+          <p className="p">
+            Stand by holding a dumbbell in each hand with your arms hanging by your sides. Ensure your elbows are close
+            to your torso and your shoulders are unshrugged. Keeping your upper arms stationary, exhale as you curl the
+            weights up to shoulder level, rotating your wrists outwards, while contracting your biceps
+          </p>
+          <Link to="/bic">
+          <div className="overlap-group" onClick={handleClick}>
+            <div className="frame">
+              <svg className="vector" alt="Vector" src="vector.png" />
+              <div className="text-wrapper-2">Start</div>
             </div>
           </div>
+          </Link>
+          <video className="group" alt="exer" src="./cur.mp4" controls />
         </div>
-        <div className="group-2" />
+        <div className="header">
+          <div className="text-wrapper-3">Bicep Curl</div>
+          <Link to="/selection">
+          <svg className="vector-2" alt="Vector" src="return.svg" />
+          <svg className="m-2" alt="M" src="s-m.png" />
+          </Link>
+        </div>
+        <svg className="line2" alt="Line" src="line-2.svg" />
+
+        <div className="toolbar">
+        <svg className="male-user" alt="Male user" src="male-user.png" />
+        <div className="text-wrapper">Syed Atif</div>
+        <svg className="line3" alt="Line" src="line-3.svg" />
+        <div className="customer-wrapper">
+          <svg className="customer" alt="Customer" src="image.png" />
+        </div>
+        <div className="overlap-2">
+          <div className="text-wrapper-4">Profile</div>
+          <div className="text-wrapper-4">Profile</div>
+        </div>
+        <div className="barbell-wrapper">
+          <svg className="barbell" alt="Barbell" src="barbell-2.png" />
+        </div>        
+        <div className="overlap-3">
+          <div className="text-wrapper-5">My Workouts</div>
+          <div className="text-wrapper-5">My Workouts</div>
+        </div>
+        <Link to="/about">
+        <div className="AboutLink">
+            <div className="book-wrapper">
+              <svg className="book" alt="Book" src="book-2.png" />
+            </div>
+            <div className="overlap-4">
+              <div className="text-wrapper-6">About</div>
+              <div className="text-wrapper-6">About</div>
+            </div>
+          </div>
+        </Link>
+        </div>
+
       </div>
     </div>
   );
 };
+

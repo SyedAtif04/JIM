@@ -1,7 +1,9 @@
-import React, { useState, useEffect} from 'react';
+import React,{ useState, useEffect} from "react";
+import "./cur.css";
 import axios from 'axios';
-import "./tri.css";
-
+import ReactPlayer from 'react-player';
+import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 const url = 'http://localhost:3000/';
 
 
@@ -12,7 +14,7 @@ export const Tricep = () => {
     try {
       const res = await axios.post('http://127.0.0.1:5000/tricep_pushdowns');
       if (res.data.success) {
-        setResponse('Squats detection started successfully.');
+        setResponse('Tricep pushdown detection started successfully.');
       } else {
         setResponse('Error: ' + res.data.error);
       }
@@ -22,37 +24,69 @@ export const Tricep = () => {
     }
   };
   return (
-    <body>
-      <div className="tricep-pushdowns">
-        <div className="group"><button onClick={handleClick}>
-          <div className="overlap-group">
-            <div className="text-wrapper">Start Recording</div>
-          </div></button>
-        </div>
+    <div className="curl">
+            <Helmet>
+    <title>JIM | TRICEP PUSHDOWN</title>
+    <svg className="h-m" alt="s-m" src="s-m.png"/>
+  </Helmet>
+      <div className="div">
+        <svg className="m" alt="M" src="m.svg" />
         <div className="overlap">
-          <div className="overlap-wrapper">
-            <div className="overlap-2">
-              <div className="rectangle" />
-              <p className="to-perform-squats">
-                <span className="span">To perform Squats </span>
-                <span className="text-wrapper-2"> </span>
-                <span className="text-wrapper-3">
-                <br />1.Start Position: Stand with feet shoulder-width apart, toes slightly turned out, back straight.
-                <br />2.Descend: Bend knees, push hips back as if sitting into a chair, keeping chest up, back straight. Lower until thighs parallel to ground.
-                <br />3.Engage Core: Keep core muscles engaged throughout for spine stabilization.
-                <br />4.Knees Alignment: Ensure knees aligned with toes, not extending beyond.
-                <br />5.Drive Through Heels: Press through heels to return to start, exhale during movement.
-                <br />6.Finish Position: Stand straight, fully extend hips and knees.
-                <br />7.Repeat: Perform desired repetitions.
-                </span>
-              </p>
+          <p className="p">
+          Stand facing a cable machine with a straight bar attached to the high pulley. Grip the bar with an overhand grip, hands shoulder-width apart. Keep your elbows close to your body. Push the bar down until your arms are fully extended, then slowly return to the starting position. Keep your back straight and core engaged throughout.
+          </p>
+          <Link to="/bic">
+          <div className="overlap-group" onClick={handleClick}>
+            <div className="frame">
+              <svg className="vector" alt="Vector" src="vector.png" />
+              <div className="text-wrapper-2">Start</div>
             </div>
           </div>
-          <img className="image" alt="Image" src="squat.png" />
+          </Link>
+          <video className="group" alt="exer" src="./cur.mp4" controls />
         </div>
-        <div className="div" />
-        <img className="image" alt="Image" src="tricepp.png" />
+        <div className="header">
+          <div className="text-wrapper-3">Tricep Pushdown</div>
+          <Link to="/selection">
+          <svg className="vector-2" alt="Vector" src="return.svg" />
+          <svg className="m-2" alt="M" src="s-m.png" />
+          </Link>
+        </div>
+        <svg className="line2" alt="Line" src="line-2.svg" />
+
+        <div className="toolbar">
+        <svg className="male-user" alt="Male user" src="male-user.png" />
+        <div className="text-wrapper">Syed Atif</div>
+        <svg className="line3" alt="Line" src="line-3.svg" />
+        <div className="customer-wrapper">
+          <svg className="customer" alt="Customer" src="image.png" />
+        </div>
+        <div className="overlap-2">
+          <div className="text-wrapper-4">Profile</div>
+          <div className="text-wrapper-4">Profile</div>
+        </div>
+        <div className="barbell-wrapper">
+          <svg className="barbell" alt="Barbell" src="barbell-2.png" />
+        </div>        
+        <div className="overlap-3">
+          <div className="text-wrapper-5">My Workouts</div>
+          <div className="text-wrapper-5">My Workouts</div>
+        </div>
+        <Link to="/about">
+        <div className="AboutLink">
+            <div className="book-wrapper">
+              <svg className="book" alt="Book" src="book-2.png" />
+            </div>
+            <div className="overlap-4">
+              <div className="text-wrapper-6">About</div>
+              <div className="text-wrapper-6">About</div>
+            </div>
+          </div>
+        </Link>
+        </div>
+
       </div>
-    </body>
+    </div>
   );
 };
+

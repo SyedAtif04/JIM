@@ -9,9 +9,9 @@ export const LandingPage = () => {
       <svg className="m" alt="" src="./M.png"/>
         <div className="overlap-group">
           <Link to="/login">
-            <button>
+            
               <div className="text-wrapper">Let’s get started!</div>
-            </button>
+           
           </Link>
         </div>
         <p className="p">Why workout at GYM when you workout with JIM</p>

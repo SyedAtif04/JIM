@@ -10,7 +10,21 @@ export const LoginPage=()=> {
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate();
 
+	const launch_toast = (message) => {
+		// Display toast logic
+		var x = document.getElementById("toast");
+		var desc = document.getElementById("desc");
+		// Set the message content
+		desc.textContent = message;
+		x.className = "show";
+		setTimeout(function () { x.className = x.className.replace("show", ""); }, 5000);
+	};
+
 	const handleLogin = async () => {
+		if (!email || !password) {
+			launch_toast("required fields cant be empty");
+			return; // Prevent form submission if fields are empty
+		}
 		try {
 			const response = await fetch('/login', {
 				method: 'POST',
@@ -22,10 +36,13 @@ export const LoginPage=()=> {
 
 			const data = await response.json();
 			if (response.ok) {
-				navigate("/selection") ;
+				launch_toast(data.message);
+				
 				console.log(data.message); // If login successful
+				navigate('/selection')
 			} else {
 				console.error(data.message); // If login failed
+				launch_toast(data.message);
 			}
 		} catch (error) {
 			console.error("An error occurred:", error);
@@ -46,8 +63,10 @@ export const LoginPage=()=> {
 			const data = await response.json();
 			if (response.ok) {
 				console.log(data.message); // If registration successful
+				launch_toast(data.message);
 			} else {
 				console.error(data.message); // If registration failed
+				launch_toast(data.message);
 			}
 		} catch (error) {
 			console.error("An error occurred:", error);
@@ -58,6 +77,8 @@ export const LoginPage=()=> {
 		const signUpButton = document.getElementById('signUp');
 		const signInButton = document.getElementById('signIn');
 		const container = document.getElementById('container');
+		const signUpSubmitButton = document.getElementById('signUpSubmit');
+		const signInSubmitButton = document.getElementById('signInSubmit');
 
 		// Check if elements exist before adding event listeners
 		if (signUpButton && signInButton && container) {
@@ -68,20 +89,27 @@ export const LoginPage=()=> {
 			signInButton.addEventListener('click', () => {
 				container.classList.remove("right-panel-active");
 			});
-
-			return () => {
+		}
+		return () => {
+			if (signUpButton && signInButton) {
 				signUpButton.removeEventListener('click', () => {
 					container.classList.add("right-panel-active");
 				});
 				signInButton.removeEventListener('click', () => {
 					container.classList.remove("right-panel-active");
 				});
-			};
-		}
+			}
+
+			if (signUpSubmitButton && signInSubmitButton) {
+				signUpSubmitButton.removeEventListener('click', launch_toast);
+				signInSubmitButton.removeEventListener('click', launch_toast);
+			}
+		};
 	}, []);
 
 	return (
 		<div className="LoginPage">
+			<div id="toast"><svg id="img" src="s-m.png" alt="" /><div id="desc">A notification message..</div></div>
 			<div>
 				<svg src="s-m.png" alt="jimlogo" />
 			</div>
@@ -97,18 +125,21 @@ export const LoginPage=()=> {
 							placeholder="Name"
 							value={name}
 							onChange={(e) => setName(e.target.value)}
+							required
 						/>
 						<input
 							type="email"
 							placeholder="Email"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
+							required
 						/>
 						<input
 							type="password"
 							placeholder="Password"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
+							required
 						/>
 						<button onClick={handleRegister}>Sign Up</button>
 					</form>
@@ -122,12 +153,14 @@ export const LoginPage=()=> {
 							placeholder="Email"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
+							required
 						/>
 						<input
 							type="password"
 							placeholder="Password"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
+							required
 						/>
 						<a href="#">Forgot your password?</a>
 						<button onClick={handleLogin}>Sign In</button>
