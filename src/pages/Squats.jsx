@@ -12,7 +12,7 @@ export const Squat = () => {
 
   const handleClick = async () => {
     try {
-      const res = await axios.post('http://127.0.0.1:5000/squats_squats');
+      const res = await axios.post('http://127.0.0.1:5000/squats');
       if (res.data.success) {
         setResponse('Squat detection started successfully.');
       } else {
@@ -35,14 +35,14 @@ export const Squat = () => {
           <p className="p">
           Stand with feet shoulder-width apart and toes slightly outward. Keep your chest up and core engaged. Push your hips back and bend your knees, lowering until thighs are parallel to the ground, with knees tracking over toes. Keep weight on your heels. Push through your heels to stand back up, squeezing your glutes and maintaining a straight back.
           </p>
-          <Link to="/bic">
+          
           <div className="overlap-group" onClick={handleClick}>
             <div className="frame">
               <svg className="vector" alt="Vector" src="vector.png" />
               <div className="text-wrapper-2">Start</div>
             </div>
           </div>
-          </Link>
+       
           <video className="group" alt="exer" src="./cur.mp4" controls />
         </div>
         <div className="header">

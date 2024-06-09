@@ -53,7 +53,7 @@ export const Selection_page = () => {
            
                 <div className="overlap">
                   <div className="text-wrapper-4">Squats</div>
-                  <svg className="image" alt="" src="image.png" />     
+                  <svg className="image" alt="" src="image-6.png" />     
                   <div className="overlap-group">
                     <Link to="/selection" onClick={handleClick}>
                       

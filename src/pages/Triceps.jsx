@@ -35,14 +35,14 @@ export const Tricep = () => {
           <p className="p">
           Stand facing a cable machine with a straight bar attached to the high pulley. Grip the bar with an overhand grip, hands shoulder-width apart. Keep your elbows close to your body. Push the bar down until your arms are fully extended, then slowly return to the starting position. Keep your back straight and core engaged throughout.
           </p>
-          <Link to="/bic">
+          
           <div className="overlap-group" onClick={handleClick}>
             <div className="frame">
               <svg className="vector" alt="Vector" src="vector.png" />
               <div className="text-wrapper-2">Start</div>
             </div>
           </div>
-          </Link>
+          
           <video className="group" alt="exer" src="./cur.mp4" controls />
         </div>
         <div className="header">

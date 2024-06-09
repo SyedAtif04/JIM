@@ -37,14 +37,14 @@ export const Bic_curl = () => {
             to your torso and your shoulders are unshrugged. Keeping your upper arms stationary, exhale as you curl the
             weights up to shoulder level, rotating your wrists outwards, while contracting your biceps
           </p>
-          <Link to="/bic">
+          
           <div className="overlap-group" onClick={handleClick}>
             <div className="frame">
               <svg className="vector" alt="Vector" src="vector.png" />
               <div className="text-wrapper-2">Start</div>
             </div>
           </div>
-          </Link>
+      
           <video className="group" alt="exer" src="./cur.mp4" controls />
         </div>
         <div className="header">

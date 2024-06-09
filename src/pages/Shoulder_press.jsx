@@ -35,14 +35,14 @@ export const Shoulder = () => {
           <p className="p">
           Stand with feet shoulder-width apart, holding a dumbbell in each hand at shoulder height with palms facing forward. Keep your core engaged and back straight. Press the weights overhead until your arms are fully extended. Lower the dumbbells back to shoulder height with control. Avoid arching your back throughout the movement.
            </p>
-          <Link to="/bic">
+          
           <div className="overlap-group" onClick={handleClick}>
             <div className="frame">
               <svg className="vector" alt="Vector" src="vector.png" />
               <div className="text-wrapper-2">Start</div>
             </div>
           </div>
-          </Link>
+         
           <video className="group" alt="exer" src="./cur.mp4" controls />
         </div>
         <div className="header">
