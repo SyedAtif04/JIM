@@ -108,6 +108,7 @@ export const LoginPage=()=> {
 	}, []);
 
 	return (
+		<body className="main">
 		<div className="LoginPage">
 			<div id="toast"><svg id="img" src="s-m.png" alt="" /><div id="desc">A notification message..</div></div>
 			<div>
@@ -188,6 +189,7 @@ export const LoginPage=()=> {
 				</p>
 			</footer>
 		</div>
+		</body>
 	);
 }
 

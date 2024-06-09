@@ -1,55 +1,61 @@
-import React,{ useState, useEffect} from "react";
-import "./cur.css";
-import axios from 'axios';
-import ReactPlayer from 'react-player';
+import React from "react";
+import "./Profile.css";
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 const url = 'http://localhost:3000/';
 
 
-export const Bic_curl = () => {
-  const [response, setResponse] = useState('');
+export const Profile = () => {
 
-  const handleClick = async () => {
-    try {
-      const res = await axios.post('http://127.0.0.1:5000/bicep_curl');
-      if (res.data.success) {
-        setResponse('Bicep Curl detection started successfully.');
-      } else {
-        setResponse('Error: ' + res.data.error);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setResponse('Error: ' + error.message);
-    }
-  };
   return (
     <div className="dektop">
             <Helmet>
-    <title>JIM | BICEP CURL</title>
+    <title>JIM | PROFILE</title>
     <svg className="h-m" alt="s-m" src="s-m.png"/>
   </Helmet>
       <div className="div">
         <svg className="m" alt="M" src="m.svg" />
-        <div className="overlap">
-          <p className="p">
-            Stand by holding a dumbbell in each hand with your arms hanging by your sides. Ensure your elbows are close
-            to your torso and your shoulders are unshrugged. Keeping your upper arms stationary, exhale as you curl the
-            weights up to shoulder level, rotating your wrists outwards, while contracting your biceps
-          </p>
-          
-          <div className="overlap-group" onClick={handleClick}>
-            <div className="frame">
-              <svg className="vector" alt="Vector" src="vector.png" />
-              <div className="text-wrapper-2">Start</div>
+        
+        <div className="box">
+      <div className="group">
+        <div className="div">
+            <div className="overlap">
+          <div className="group-2">
+            <div className="group-3">
+              <div className="group-4">
+                <div className="text-wrapper-20">Username:</div>
+                <div className="text-wrapper-30">Hitler1945</div>
+              </div>
+              <div className="group-5">
+                <div className="text-wrapper-40">Email:</div>
+                <div className="text-wrapper-50">atif06@gmail.com</div>
+              </div>
+              <div className="group-6">
+                <div className="text-wrapper-80">Password:</div>
+                <div className="text-wrapper-70">islpslppl</div>
+              </div>
+                <div className="text-wrapper-10">change</div>
             </div>
           </div>
-          
-          <video className="group" alt="exer" src="./cur.mp4" controls />
-
+          <div className="overlap-group-wrapper">
+            <div className="photo">
+              <div className="text-wrapper-80">change photo</div>
+              <svg className="male-user2" alt="Male user" src="male-user.png" />
+            </div>
+          </div>
+          <Link to="/">
+          <div className="overlap-wrapper">
+            <div className="logoutbutton">
+              <div className="text-wrapper-90">Log Out</div>
+              </div>
+            </div>
+            </Link>
+          </div>
         </div>
+      </div>
+    </div>
         <div className="header">
-          <div className="text-wrapper-3">Bicep Curl</div>
+          <div className="text-wrapper-3">Profile</div>
           <Link to="/selection">
           <svg className="vector-2" alt="Vector" src="return.svg" />
           <svg className="m-2" alt="M" src="s-m.png" />

@@ -8,6 +8,8 @@ import { Shoulder } from "./pages/Shoulder_press";
 import { Tricep } from "./pages/Triceps";
 import { LoginPage } from "./pages/Login_Page";
 import { About } from "./pages/AboutPage";
+import { MyWorkout } from "./pages/MyWorkout";
+import { Profile } from "./pages/Profile";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/tri" element={<Tricep />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/About" element={<About />} />
+        <Route path="/MyWorkout" element={<MyWorkout />} />
+        <Route path="/Profile" element={<Profile />} />
       </Routes>
     </Router>
   );
