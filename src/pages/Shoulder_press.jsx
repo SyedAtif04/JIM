@@ -31,7 +31,7 @@ export const Shoulder = () => {
 </Helmet>
 <div className="div">
 <svg className="m" alt="M" src="m.svg" />
-<div className="overlap">
+<div className="overlap100">
   <p className="p">
   The shoulder press is a strength training exercise that primarily targets the deltoid muscles of the shoulders, as well as the triceps and upper chest muscles. It is a fundamental exercise for building upper body strength and muscle mass. The shoulder press can be performed using various equipment, including dumbbells, barbells, or a shoulder press machine.    </p>
   

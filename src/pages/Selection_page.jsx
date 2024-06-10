@@ -69,6 +69,34 @@ export const Selection_page = () => {
     }
   };
 
+  const lateral = async () => {
+    try {
+      const res = await axios.post('http://127.0.0.1:5000/lateral_raises');
+      if (res.data.success) {
+        setResponse('Squats detection started successfully.');
+      } else {
+        setResponse('Error: ' + res.data.error);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setResponse('Error: ' + error.message);
+    }
+  };
+
+  const crunch = async () => {
+    try {
+      const res = await axios.post('http://127.0.0.1:5000/crunches');
+      if (res.data.success) {
+        setResponse('Squats detection started successfully.');
+      } else {
+        setResponse('Error: ' + res.data.error);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setResponse('Error: ' + error.message);
+    }
+  };
+
 
   useEffect(() => {
     // Fetch username from backend
@@ -144,6 +172,36 @@ export const Selection_page = () => {
                   <div className="overlap-group">
                     <Link to="/selection">
                       <div className = "hidden" onClick={shoulder}> {/* change the HandleClick fun() */}
+                            <div className="text-wrapper-500">Start</div>
+                            <svg className="vector" alt="" src="vector.svg" />
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+          </Link>
+
+          <Link to="/Plank">
+                <div className="overlap-plank">
+                  <div className="text-wrapper-400">Crunches</div>
+                  <svg className="image-plank" alt="" src="plank.png" />     
+                  <div className="overlap-group">
+                    <Link to="/selection">
+                      <div className = "hidden" onClick={crunch}> {/* change the HandleClick fun() */}
+                            <div className="text-wrapper-500">Start</div>
+                            <svg className="vector" alt="" src="vector.svg" />
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+          </Link>
+
+          <Link to="/LateralRaises">
+                <div className="overlap-lat">
+                  <div className="text-wrapper-400">Lateral Raises</div>
+                  <svg className="image-lat" alt="" src="lateral.raises.png" />     
+                  <div className="overlap-group">
+                    <Link to="/selection">
+                      <div className = "hidden" onClick={lateral}> {/* change the HandleClick fun() */}
                             <div className="text-wrapper-500">Start</div>
                             <svg className="vector" alt="" src="vector.svg" />
                       </div>

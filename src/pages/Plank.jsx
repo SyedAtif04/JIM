@@ -1,20 +1,20 @@
-import React,{ useState, useEffect} from "react";
-import "./cur.css";
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import ReactPlayer from 'react-player';
+import './Plank.css';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 const url = 'http://localhost:3000/';
 
 
-export const Bic_curl = () => {
+export const Plank = () => {
   const [response, setResponse] = useState('');
 
   const handleClick = async () => {
     try {
-      const res = await axios.post('http://127.0.0.1:5000/bicep_curl');
+      const res = await axios.post('http://127.0.0.1:5000/crunches');
       if (res.data.success) {
-        setResponse('Bicep Curl detection started successfully.');
+        setResponse('Squats detection started successfully.');
       } else {
         setResponse('Error: ' + res.data.error);
       }
@@ -26,30 +26,28 @@ export const Bic_curl = () => {
   return (
     <div className="dektop">
             <Helmet>
-    <title>JIM | BICEP CURL</title>
+    <title>JIM | Crunches</title>
     <svg className="h-m" alt="s-m" src="s-m.png"/>
   </Helmet>
       <div className="div">
-        <svg className="m" alt="M" src="m.svg" />
+
         <div className="overlap100">
           <p className="p">
-            Stand by holding a dumbbell in each hand with your arms hanging by your sides. Ensure your elbows are close
-            to your torso and your shoulders are unshrugged. Keeping your upper arms stationary, exhale as you curl the
-            weights up to shoulder level, rotating your wrists outwards, while contracting your biceps
-          </p>
-          
+          A plank is a core strengthening exercise that involves maintaining a position similar to a push-up for the maximum possible time. The most common form is the forearm plank, where you hold your body in a straight line from head to heels, supported by your forearms and toes. This exercise targets the abdominal muscles, back, shoulders, and glutes.          </p>
+
           <div className="overlap-group" onClick={handleClick}>
             <div className="frame">
               <svg className="vector" alt="Vector" src="vector.png" />
               <div className="text-wrapper-2">Start</div>
             </div>
           </div>
-          
-          <video className="group" alt="exer" src="./cur.mp4" controls />
 
-        </div>
+          <video className="group" alt="exer" src="./cur.mp4" controls />
+          </div>
+
+        <svg className="m" alt="M" src="m.svg" />
         <div className="header">
-          <div className="text-wrapper-3">Bicep Curl</div>
+          <div className="text-wrapper-3">Crunches</div>
           <Link to="/selection">
           <svg className="vector-2" alt="Vector" src="return.svg" />
           <svg className="m-2" alt="M" src="s-m.png" />
@@ -100,4 +98,3 @@ export const Bic_curl = () => {
     </div>
   );
 };
-

@@ -31,7 +31,7 @@ export const Squat = () => {
   </Helmet>
       <div className="div">
 
-        <div className="overlap">
+        <div className="overlap100">
           <p className="p">
           A squat is a strength exercise in which the trainee lowers their hips from a standing position and then stands back up. During the descent, the hip and knee joints flex while the ankle joint dorsiflexes; conversely the hip and knee joints extend and the ankle joint plantarflexes when standing up.
           </p>

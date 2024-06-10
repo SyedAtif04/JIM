@@ -13,11 +13,11 @@ mp_drawing = mp.solutions.drawing_utils
 pygame.init()
 pygame.mixer.init()
 
-last_play_time_hands_low = 0
+last_play_time_arms_low = 0
 last_play_time_joints_visible = 0
 
-hands_low = "src\\Python\\static\\audio\\low_hands.mp3"
 joints_visible = "src\\Python\\static\\audio\\joints_not_visible.mp3"
+arms_high = "src\\Python\\static\\audio\\arms_too_high.mp3"
 
 def calculate_angle(a, b, c):
     a = np.array(a)
@@ -32,8 +32,8 @@ def calculate_angle(a, b, c):
     
     return angle
 
-def shoulder_press():
-    global last_play_time_hands_low
+def lateral_raises():
+    global last_play_time_arms_low
     global last_play_time_joints_visible
 
     cap = cv2.VideoCapture(0)
@@ -69,37 +69,39 @@ def shoulder_press():
                 wrist_r = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y]
                 hip_r = [landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value].y]
 
-                angle_l = calculate_angle(shoulder_l, elbow_l, wrist_l)
-                angle_r = calculate_angle(shoulder_r, elbow_r, wrist_r)
-                angle_torso_arm_l = calculate_angle(hip_l, shoulder_l, elbow_l)
-                angle_torso_arm_r = calculate_angle(hip_r, shoulder_r, elbow_r)
+                angle_h_s_e_l = calculate_angle(hip_l, shoulder_l, elbow_l)
+                angle_h_s_e_r = calculate_angle(hip_r, shoulder_r, elbow_r)
 
-                required_joints_visible = all(coord is not None for coord in hip_l + shoulder_l + wrist_l + elbow_l + hip_r + shoulder_r + wrist_r + elbow_r)
+                required_joints_visible = all(coord is not None for coord in hip_l + hip_r + shoulder_l + elbow_l + wrist_l + shoulder_r + elbow_r + wrist_r)
 
-                if (angle_l > 150 and angle_r > 150) and (angle_torso_arm_l > 150 and angle_torso_arm_r > 150):
-                    stage = "pressing"
-                elif (95 < angle_l < 150 and 95 < angle_r < 150) and (95 < angle_torso_arm_l < 150 and 95 < angle_torso_arm_r < 150):
+                if (angle_h_s_e_l > 100 and angle_h_s_e_r > 100):
+                    stage = "raised"
+                elif(50 < angle_h_s_e_l < 75 and 50 < angle_h_s_e_r < 75):  
                     stage = "lowered"
                 
-                if stage == "pressing" and prev_stage == "lowered":
+                if stage == "raised" and prev_stage == "lowered":
                     counter += 1
-                    print("Shoulder Press Count:", counter)
+                    print("Lateral Raises Count:", counter)
                 
                 prev_stage = stage
 
-                hands_too_low = True if angle_torso_arm_l < 80 and angle_torso_arm_r < 80 else False
+                arms_too_high = True if angle_h_s_e_l > 100 and angle_h_s_e_r > 100 else False
 
             except Exception as e:
                 print(f"Error processing pose: {e}")
 
+             # Render lateral raises counter
+            # Setup status box
             cv2.rectangle(image, (0, 0), (320, 83), (245, 117, 16), -1)
 
+        # Reps data
             cv2.putText(image, 'REPS', (15, 12),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
             cv2.putText(image, str(counter),
                     (18, 70),
                     cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255, 255, 255), 2, cv2.LINE_AA)
 
+        # Stage data
             cv2.putText(image, 'STAGE', (165, 12),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
             cv2.putText(image, stage,
@@ -108,16 +110,16 @@ def shoulder_press():
           
 
             if required_joints_visible:
-                if hands_too_low:
-                    error = "Hands too low"
+                if arms_too_high:
+                    error = "Arms too high"
                     cv2.rectangle(image, (0, 420), (640, 480), (0, 0, 255), -1)
                     cv2.putText(image, error, (240, 450), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
                  
                     current_time = time.time()
-                    if (current_time - last_play_time_hands_low) > 5:
-                        pygame.mixer.music.load(hands_low)
+                    if (current_time - last_play_time_arms_low) > 5:
+                        pygame.mixer.music.load(arms_high)
                         pygame.mixer.music.play()
-                        last_play_time_hands_low = current_time
+                        last_play_time_arms_low = current_time
                     
             else:
                 cv2.rectangle(image, (0, image.shape[0] - 40), (image.shape[1], image.shape[0]), (0, 0, 255), -1)
@@ -130,16 +132,17 @@ def shoulder_press():
                     pygame.mixer.music.play()
                     last_play_time_joints_visible = current_time
             
+            # Render detections
             mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
-                                    mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=2),
-                                    mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2))
-            
-                    # Resizeable window
-            cv2.namedWindow('Shoulder Press Detection', cv2.WINDOW_NORMAL)
-            cv2.resizeWindow('Shoulder Press Detection', 1800, 1200)  # Set the initial size of the window
+                                  mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=2),
+                                  mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2))
+
+# Resizeable window
+            cv2.namedWindow('Lateral Raise Detection', cv2.WINDOW_NORMAL)
+            cv2.resizeWindow('Lateral Raise Detection', 1800, 1200)  # Set the initial size of the window
 
             # Get the current window size
-            _, _, window_width, window_height = cv2.getWindowImageRect('Shoulder Press Detection')
+            _, _, window_width, window_height = cv2.getWindowImageRect('Lateral Raise Detection')
 
             # Calculate the aspect ratio of the frame
             frame_height, frame_width = image.shape[:2]
@@ -165,18 +168,35 @@ def shoulder_press():
             # Place the resized image on the canvas
             canvas[y_offset:y_offset + new_height, x_offset:x_offset + new_width] = resized_image
 
-            cv2.imshow('Shoulder Press Detection', canvas)
+            cv2.imshow('Lateral Raise Detection', canvas)
 
             if cv2.waitKey(10) & 0xFF == ord('q'):
                 break
-
+# Release resources
     cap.release()
     cv2.destroyAllWindows()
 
-@app.route('/shoulder_press', methods=['POST'])
-def run_shoulder_press():
+
+    #         window_name = 'Lateral Raises Detection'
+    #         cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
+    #         cv2.resizeWindow(window_name, 1800, 1200)
+    #         window_width = 1800
+    #         window_height = 1200
+
+    #         image_resized = cv2.resize(image, (window_width, window_height))
+
+    #         cv2.imshow(window_name, image_resized)
+
+    #         if cv2.waitKey(10) & 0xFF == ord('q'):
+    #             break
+
+    # cap.release()
+    # cv2.destroyAllWindows()
+
+@app.route('/lateral_raises', methods=['POST'])
+def run_lateral_raises():
     try:
-        shoulder_press()
+        lateral_raises()
         return jsonify({'success': True})
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})

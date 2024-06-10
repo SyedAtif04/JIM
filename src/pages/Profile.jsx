@@ -30,11 +30,12 @@ export const Profile = () => {
                 <div className="text-wrapper-40">Email:</div>
                 <div className="text-wrapper-50">atif06@gmail.com</div>
               </div>
-              <div className="group-6">
-                <div className="text-wrapper-80">Password:</div>
+              {/* <div className="group-6">
+                <div className="text-wrapper-60">Password:</div>
                 <div className="text-wrapper-70">islpslppl</div>
               </div>
-                <div className="text-wrapper-10">change</div>
+              <Link to="/Profile">
+                <div className="text-wrapper-10">change</div></Link> */}
             </div>
           </div>
           <div className="overlap-group-wrapper">

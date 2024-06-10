@@ -7,7 +7,7 @@
 
 .selection-page .div {
   background-color: #1a1818;
-  height: 2560px;
+  height: 1600px;
   display: flex;
   /* flex-direction: row; */
   justify-content: center;
@@ -595,7 +595,7 @@
   width: 123px;
   overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
   transition: color 0.3s ease; /* Smooth color transition */
-  z-index: 1;
+  z-index: 0;
   
 }
 
@@ -645,6 +645,212 @@
   background-image: url("./vector.png");
 }
 
+
+.selection-page .div .overlap-plank {
+  background-color: #8371fa;
+  border-radius: 41.83px;
+  box-shadow: 13px 13px 10.2px #00000040;
+  height: 176.62px;
+  left: 480px;
+  position: absolute;
+  top: 1175px;
+  width: 775px;
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.5s ease;
+}
+
+.selection-page .div .overlap-plank:hover {
+  transform: scale(1.2);
+  background-color: #6354C7;
+}
+.selection-page .text-wrapper-400 {
+  color: #ffffff;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-size: 38.4px;
+  font-weight: 600;
+  left: 40px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 27px;
+  white-space: nowrap;
+  width: 130px;
+}
+
+.selection-page .image-plank {
+  height: 144px;
+  left: 585px;
+  object-fit: cover;
+  position: absolute;
+  top: 20px;
+  width: 157px;
+  background-image:url("./plank.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.selection-page .overlap-group {
+  background-color: #ffffff;
+  border-radius: 23.85px;
+  box-shadow: 0px 4px 4px #00000040;
+  height: 40px;
+  left: 40px;
+  position: absolute;
+  top: 110px;
+  width: 123px;
+  overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
+  transition: color 0.3s ease; /* Smooth color transition */
+  z-index: 0;
+  
+}
+
+.selection-page .overlap-group::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: lightgrey; /* Light grey color */
+  transition: width 0.3s ease; /* Faster transition for width */
+  z-index: -1;
+  border-radius: 23.85px;
+
+}
+
+.selection-page .overlap-group:hover::before {
+  width: 100%; /* Fill the button from left to right */
+}
+
+.selection-page .overlap-group:hover {
+  color: #1a1818; /* Change text color on hover if needed */
+}
+
+
+.selection-page .text-wrapper-500 {
+  color: #1a1818;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  left: 53px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 10px;
+  white-space: nowrap;
+  width: 60px;
+}
+
+.selection-page .vector {
+  height: 25px;
+  left: 25px;
+  position: absolute;
+  top: 7px;
+  width: 18px;
+  background-image: url("./vector.png");
+}
+
+.selection-page .div .overlap-lat {
+  background-color: #8371fa;
+  border-radius: 41.83px;
+  box-shadow: 13px 13px 10.2px #00000040;
+  height: 176.62px;
+  left: 480px;
+  position: absolute;
+  top: 1400px;
+  width: 775px;
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.5s ease;
+}
+
+.selection-page .div .overlap-lat:hover {
+  transform: scale(1.2);
+  background-color: #6354C7;
+}
+.selection-page .text-wrapper-400 {
+  color: #ffffff;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-size: 38.4px;
+  font-weight: 600;
+  left: 40px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 27px;
+  white-space: nowrap;
+  width: 130px;
+}
+
+.selection-page .image-lat {
+  height: 144px;
+  left: 585px;
+  object-fit: cover;
+  position: absolute;
+  top: 20px;
+  width: 157px;
+  background-image:url("./lateral.raises.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.selection-page .overlap-group {
+  background-color: #ffffff;
+  border-radius: 23.85px;
+  box-shadow: 0px 4px 4px #00000040;
+  height: 40px;
+  left: 40px;
+  position: absolute;
+  top: 110px;
+  width: 123px;
+  overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
+  transition: color 0.3s ease; /* Smooth color transition */
+  z-index: 0;
+  
+}
+
+.selection-page .overlap-group::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: lightgrey; /* Light grey color */
+  transition: width 0.3s ease; /* Faster transition for width */
+  z-index: -1;
+  border-radius: 23.85px;
+
+}
+
+.selection-page .overlap-group:hover::before {
+  width: 100%; /* Fill the button from left to right */
+}
+
+.selection-page .overlap-group:hover {
+  color: #1a1818; /* Change text color on hover if needed */
+}
+
+
+.selection-page .text-wrapper-500 {
+  color: #1a1818;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-size: 20px;
+  font-weight: 600;
+  left: 53px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 10px;
+  white-space: nowrap;
+  width: 60px;
+}
+
+.selection-page .vector {
+  height: 25px;
+  left: 25px;
+  position: absolute;
+  top: 7px;
+  width: 18px;
+  background-image: url("./vector.png");
+}
 
 /* .selection-page .male-user {
   height: 108px;

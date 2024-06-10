@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import cv2
 import mediapipe as mp
 import numpy as np
+import pygame
 
 app = Flask(__name__)
 
@@ -108,8 +109,18 @@ def run_detection_bicep_curl():
 
 # Function to run shoulder press detection
 def shoulder_press():
+
     mp_pose = mp.solutions.pose
     mp_drawing = mp.solutions.drawing_utils
+
+    pygame.init()
+    pygame.mixer.init()
+
+    last_play_time_hands_low = 0
+    last_play_time_joints_visible = 0
+
+    hands_low = "hands_too_low.mp3"
+    joints_visible = "joints_not_visible.mp3"
 
     # Initialize webcam
     cap = cv2.VideoCapture(0)

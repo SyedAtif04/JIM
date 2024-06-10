@@ -10,6 +10,8 @@ import { LoginPage } from "./pages/Login_Page";
 import { About } from "./pages/AboutPage";
 import { MyWorkout } from "./pages/MyWorkout";
 import { Profile } from "./pages/Profile";
+import { LateralRaises } from "./pages/LateralRaises";
+import { Plank } from "./pages/Plank";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/About" element={<About />} />
         <Route path="/MyWorkout" element={<MyWorkout />} />
         <Route path="/Profile" element={<Profile />} />
+        <Route path="/LateralRaises" element={<LateralRaises />} />
+        <Route path="/Plank" element={<Plank />} />
       </Routes>
     </Router>
   );

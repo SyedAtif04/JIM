@@ -39,7 +39,11 @@ export const LoginPage=()=> {
 				launch_toast(data.message);
 				
 				console.log(data.message); // If login successful
-				navigate('/selection')
+				// Add a delay before navigating to the selection page
+				setTimeout(() => {
+					navigate("/selection");
+				}, 2000); // 2-second delay
+		
 			} else {
 				console.error(data.message); // If login failed
 				launch_toast(data.message);
