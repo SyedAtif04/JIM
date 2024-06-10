@@ -12,7 +12,7 @@ export const Bic_curl = () => {
 
   const handleClick = async () => {
     try {
-      const res = await axios.post('http://127.0.0.1:5000/bicep_curl');
+      const res = await axios.post('http://127.0.0.1:5000/bicep_curls');
       if (res.data.success) {
         setResponse('Bicep Curl detection started successfully.');
       } else {

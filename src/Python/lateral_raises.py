@@ -177,21 +177,7 @@ def lateral_raises():
     cv2.destroyAllWindows()
 
 
-    #         window_name = 'Lateral Raises Detection'
-    #         cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
-    #         cv2.resizeWindow(window_name, 1800, 1200)
-    #         window_width = 1800
-    #         window_height = 1200
-
-    #         image_resized = cv2.resize(image, (window_width, window_height))
-
-    #         cv2.imshow(window_name, image_resized)
-
-    #         if cv2.waitKey(10) & 0xFF == ord('q'):
-    #             break
-
-    # cap.release()
-    # cv2.destroyAllWindows()
+   
 
 @app.route('/lateral_raises', methods=['POST'])
 def run_lateral_raises():

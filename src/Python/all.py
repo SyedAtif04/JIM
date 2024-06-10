@@ -2,6 +2,7 @@ import cv2
 import time
 import pygame
 import mediapipe as mp
+import threading
 import numpy as np
 from flask import Flask, request, jsonify
 
@@ -28,6 +29,13 @@ def calculate_angle(a, b, c):
     
     return angle
 
+# Function to calculate distance between two points
+def calculate_distance(a, b):
+    a = np.array(a)
+    b = np.array(b)
+    return np.linalg.norm(a - b)
+
+
 last_play_time_crunch_incorrect = 0
 last_play_time_joints_visible1 = 0
 last_play_time_arms_low = 0
@@ -36,9 +44,15 @@ last_play_time_hands_low = 0
 last_play_time_joints_visible3 = 0
 
 crunch_incorrect = "src\\Python\\static\\audio\\crunch_incorrect.mp3"
-joints_visible = "src\\Python\\static\\audio\\joints_not_visible.mp3"
+joints_visible = "src\\Python\\static\\audio\\notinframe.mp3"
 arms_high = "src\\Python\\static\\audio\\arms_too_high.mp3"
 hands_low = "src\\Python\\static\\audio\\low_hands.mp3"
+alert_sound = pygame.mixer.Sound("src\\Python\\static\\audio\\alert.mp3")
+notinframe_sound = pygame.mixer.Sound("src\\Python\\static\\audio\\notinframe.mp3")
+legs_wide_sound = pygame.mixer.Sound("src\\Python\\static\\audio\\legs too wide.mp3")
+
+def play_audio(sound):
+    sound.play()
 
 def shoulder_press():
     global last_play_time_hands_low
@@ -526,5 +540,289 @@ def run_lateral_raises():
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
 
-if __name__ == '__main__':
+def bicep_curl_detection():
+    # Initialize webcam
+    cap = cv2.VideoCapture(0)
+
+    # Bicep CURL counter variables
+    counter = 0
+    stage = None
+
+    # Timing for audio triggers and error display
+    last_alert_time = 0
+    last_notinframe_time = 0
+    alert_cooldown = 5  # seconds
+    error_display_time = 3  # seconds
+
+    # To keep track of when to stop displaying the error
+    show_hands_too_high = False
+    show_notinframe = False
+    error_end_time_hands_too_high = 0
+    error_end_time_notinframe = 0
+
+    # Create a named window
+    cv2.namedWindow('Bicep Curl Detection', cv2.WND_PROP_FULLSCREEN)
+    cv2.setWindowProperty('Bicep Curl Detection', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+
+    # Setup MediaPipe instance
+    with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
+        while cap.isOpened():
+            ret, frame = cap.read()
+            frame = cv2.flip(frame, 1)
+            if not ret:
+                break
+
+            # Recolor image to RGB
+            image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            image.flags.writeable = False
+
+            # Make detection
+            results = pose.process(image)
+
+            # Recolor back to BGR
+            image.flags.writeable = True
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+
+            current_time = time.time()
+
+            # Check if landmarks are detected
+            if results.pose_landmarks:
+                # Extract landmarks
+                try:
+                    landmarks = results.pose_landmarks.landmark
+                    
+                    shoulder_l = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x, landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
+                    shoulder_r = [landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y]
+                    elbow_l = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x, landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y]
+                    elbow_r = [landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].y]
+                    wrist_l = [landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x, landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y]
+                    wrist_r = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y]
+                    hip_l = [landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].x, landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].y]
+                    hip_r = [landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value].y]
+
+                    # Calculate angles for both arms
+                    angle_l = calculate_angle(shoulder_l, elbow_l, wrist_l)
+                    angle_r = calculate_angle(shoulder_r, elbow_r, wrist_r)
+                    angle_l_e = calculate_angle(shoulder_l, elbow_l, wrist_l)
+                    angle_r_e = calculate_angle(shoulder_r, elbow_r, wrist_r)
+                    angle_l_h = calculate_angle(hip_l, shoulder_l, elbow_l)
+                    angle_r_h = calculate_angle(hip_r, shoulder_r, elbow_r)
+
+                    # Detect the curl position
+                    if angle_l_e > 140 and angle_r_e > 140 and angle_l_h < 45 and angle_r_h < 45:
+                        stage = "down"
+                    if angle_l_e < 35 and angle_r_e < 35 and stage == 'down' and angle_l_h < 45 and angle_r_h < 45:
+                        stage = "up"
+                        counter += 1
+                        print(counter)
+
+                    # Detect incorrect form
+                    hands_too_high = wrist_l[1] < shoulder_l[1] and wrist_r[1] < shoulder_r[1]
+
+                except:
+                    pass
+
+                # Render bicep curl counter
+                # Setup status box
+                cv2.rectangle(image, (0, 0), (320, 83), (245, 117, 16), -1)
+
+                # Reps data
+                cv2.putText(image, 'REPS', (15, 12),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
+                cv2.putText(image, str(counter),
+                            (18, 70),
+                            cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255, 255, 255), 2, cv2.LINE_AA)
+
+                # Stage data
+                cv2.putText(image, 'STAGE', (165, 12),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
+                cv2.putText(image, stage,
+                            (120, 70),
+                            cv2.FONT_HERSHEY_SIMPLEX, 1.2, (255, 255, 255), 2, cv2.LINE_AA)
+                
+                # Incorrect form
+                if hands_too_high and (current_time - last_alert_time > alert_cooldown):
+                    show_hands_too_high = True
+                    error_end_time_hands_too_high = current_time + error_display_time
+                    cv2.rectangle(image, (0, 420), (640, 480), (0, 0, 255), -1)
+                    cv2.putText(image, 'HANDS TOO HIGH', (240, 450), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+                    # Play audio alert
+                    threading.Thread(target=play_audio, args=(alert_sound,)).start()
+                    last_alert_time = current_time
+
+            else:
+                # No landmarks detected
+                if current_time - last_notinframe_time > alert_cooldown:
+                    show_notinframe = True
+                    error_end_time_notinframe = current_time + error_display_time
+                    cv2.rectangle(image, (0, 420), (640, 480), (0, 0, 255), -1)
+                    cv2.putText(image, 'NOT IN FRAME', (240, 450), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+                    # Play "not in frame" audio alert
+                    threading.Thread(target=play_audio, args=(notinframe_sound,)).start()
+                    last_notinframe_time = current_time
+
+            # Display error messages
+            if show_hands_too_high:
+                cv2.rectangle(image, (0, 420), (640, 480), (0, 0, 255), -1)
+                cv2.putText(image, 'HANDS TOO HIGH', (240, 450), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+                if current_time > error_end_time_hands_too_high:
+                    show_hands_too_high = False
+
+            if show_notinframe:
+                cv2.rectangle(image, (0, 420), (640, 480), (0, 0, 255), -1)
+                cv2.putText(image, 'NOT IN FRAME', (240, 450), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+                if current_time > error_end_time_notinframe:
+                    show_notinframe = False
+
+            # Render detections
+            mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
+                                       mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=2),
+                                       mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2))
+
+            cv2.imshow('Bicep Curl Detection', image)
+
+            if cv2.waitKey(10) & 0xFF == ord('q'):
+                break
+
+    # Release resources
+    cap.release()
+    cv2.destroyAllWindows()
+
+# Flask route for Bicep Curl Detection
+@app.route('/bicep_curls', methods=['POST'])
+def bicep_curls():
+    threading.Thread(target=bicep_curl_detection).start()
+    return jsonify({"status": "Bicep Curl Detection started"}), 200
+
+def squats_detection():
+    cap = cv2.VideoCapture(0)
+
+    # Squat counter variables
+    counter = 0
+    stage = None
+
+    # Timing for audio triggers
+    last_play_time_legs_wide = 0
+    last_play_time_joints_visible = 0
+    alert_cooldown = 5  # seconds
+
+    # Create a named window
+    cv2.namedWindow('Squats Detection', cv2.WND_PROP_FULLSCREEN)
+    cv2.setWindowProperty('Squats Detection', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+
+    with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
+        while cap.isOpened():
+            ret, frame = cap.read()
+            frame = cv2.flip(frame, 1)
+            if not ret:
+                break
+
+            # Recolor image to RGB
+            image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            image.flags.writeable = False
+
+            # Make detection
+            results = pose.process(image)
+
+            # Recolor back to BGR
+            image.flags.writeable = True
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+
+            # Extract landmarks
+            try:
+                landmarks = results.pose_landmarks.landmark
+                
+                # Get coordinates for hips, knees, and ankles
+                hip_l = [landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].x, landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].y]
+                knee_l = [landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].x, landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].y]
+                ankle_l = [landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].x, landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].y]
+                shoulder_l = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x, landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
+                
+                hip_r = [landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value].y]
+                knee_r = [landmarks[mp_pose.PoseLandmark.RIGHT_KNEE.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_KNEE.value].y]
+                ankle_r = [landmarks[mp_pose.PoseLandmark.RIGHT_ANKLE.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_ANKLE.value].y]
+                shoulder_r = [landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y]
+                
+                # Calculate angles for squat
+                angle_l = calculate_angle(hip_l, knee_l, ankle_l)
+                angle_r = calculate_angle(hip_r, knee_r, ankle_r)
+
+                shoulder_width = calculate_distance(shoulder_l, shoulder_r)
+                feet_width = calculate_distance(ankle_l, ankle_r)
+
+                required_joints_visible = all(coord is not None for coord in hip_l + ankle_l + knee_l + hip_r + ankle_r + knee_r)
+
+                # Squat counter logic
+                if angle_l < 100 and angle_r < 100:  # If both legs are bent (squatting)
+                    if stage != "squatting":  # If not already in squatting stage
+                        stage = "squatting"
+                        counter += 1
+                        print("Squat Count:", counter)
+                else:  # If not squatting (standing)
+                    if stage != "standing":  # If not already in standing stage
+                        stage = "standing"
+
+                legs_too_wide = feet_width > shoulder_width
+
+            except:
+                pass
+            
+            # Render squat counter
+            # Setup status box
+            cv2.rectangle(image, (0, 0), (320, 83), (245, 117, 16), -1)
+
+            # Reps data
+            cv2.putText(image, 'REPS', (15, 12),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
+            cv2.putText(image, str(counter),
+                        (18, 70),
+                        cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255, 255, 255), 2, cv2.LINE_AA)
+
+            # Stage data
+            cv2.putText(image, 'STAGE', (165, 12),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
+            cv2.putText(image, stage,
+                        (120, 70),
+                        cv2.FONT_HERSHEY_SIMPLEX, 1.2, (255, 255, 255), 2, cv2.LINE_AA)
+            
+            # Incorrect form
+            current_time = time.time()
+
+            if required_joints_visible:
+                if legs_too_wide and current_time - last_play_time_legs_wide > alert_cooldown:
+                    cv2.rectangle(image, (0, 420), (640, 480), (0, 0, 255), -1)
+                    cv2.putText(image, 'LEGS TOO WIDE', (240, 450), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+                    threading.Thread(target=play_audio, args=(legs_wide_sound,)).start()
+                    last_play_time_legs_wide = current_time
+            else:
+                if current_time - last_play_time_joints_visible > alert_cooldown:
+                    cv2.rectangle(image, (0, 420), (640, 480), (0, 0, 255), -1)
+                    cv2.putText(image, 'NOT IN FRAME', (240, 450), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2, cv2.LINE_AA)
+                    threading.Thread(target=play_audio, args=(joints_visible,)).start()
+                    last_play_time_joints_visible = current_time
+
+            # Render detections
+            mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
+                                      mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=2),
+                                      mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2))
+
+            cv2.imshow('Squats Detection', image)
+
+            if cv2.waitKey(10) & 0xFF == ord('q'):
+                break
+
+    # Release resources
+    cap.release()
+    cv2.destroyAllWindows()
+
+# Flask route for Squats Detection
+@app.route('/squats', methods=['POST'])
+def squats():
+    threading.Thread(target=squats_detection).start()
+    return jsonify({"status": "Squats Detection started"}), 200
+
+# Flask Application Runner
+if __name__ == "__main__":
     app.run(debug=True)
+
+
