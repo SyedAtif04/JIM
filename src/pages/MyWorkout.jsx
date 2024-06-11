@@ -2,10 +2,16 @@ import React from "react";
 import "./MyWorkout.css";
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { UserContext } from "../UserContext";
+import { useState, useEffect,useContext } from "react";
+
+
 const url = 'http://localhost:3000/';
 
 
 export const MyWorkout = () => {
+  const { username } = useContext(UserContext);
+
 
   return (
     <div className="dektop">
@@ -98,7 +104,7 @@ export const MyWorkout = () => {
 
         <div className="toolbar">
         <svg className="male-user" alt="Male user" src="male-user.png" />
-        <div className="text-wrapper">Hitler1945</div>
+        <div className="text-wrapper">{username}</div>
         <svg className="line3" alt="Line" src="line-3.svg" />
         <Link to="/Profile">
         <div className="ProfileLink">

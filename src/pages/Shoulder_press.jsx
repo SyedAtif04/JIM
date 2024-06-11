@@ -1,4 +1,5 @@
-import React,{ useState, useEffect} from "react";
+import React,{ useState, useEffect,useContext} from "react";
+import { UserContext } from "../UserContext";
 import "./should.css";
 import axios from 'axios';
 import ReactPlayer from 'react-player';
@@ -8,6 +9,7 @@ const url = 'http://localhost:3000/';
 
 
 export const Shoulder = () => {
+  const { username } = useContext(UserContext);
   const [response, setResponse] = useState('');
 
   const handleClick = async () => {
@@ -42,7 +44,7 @@ export const Shoulder = () => {
     </div>
   </div>
   
-  <video className="group" alt="exer" src="./cur.mp4" controls />
+  <video className="group" alt="exer" src="./shoulder.mp4" controls />
 
 </div>
 <div className="header">
@@ -56,7 +58,7 @@ export const Shoulder = () => {
 
 <div className="toolbar">
 <svg className="male-user" alt="Male user" src="male-user.png" />
-<div className="text-wrapper">Hitler1945</div>
+<div className="text-wrapper">{username}</div>
 <svg className="line3" alt="Line" src="line-3.svg" />
 <Link to="/Profile">
 <div className="ProfileLink">

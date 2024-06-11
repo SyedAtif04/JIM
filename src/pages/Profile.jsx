@@ -1,4 +1,7 @@
 import React from "react";
+import { UserContext } from "../UserContext";
+import { useState, useEffect,useContext } from "react";
+
 import "./Profile.css";
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
@@ -6,6 +9,8 @@ const url = 'http://localhost:3000/';
 
 
 export const Profile = () => {
+  const { username } = useContext(UserContext);
+
 
   return (
     <div className="dektop">
@@ -24,7 +29,7 @@ export const Profile = () => {
             <div className="group-3">
               <div className="group-4">
                 <div className="text-wrapper-20">Username:</div>
-                <div className="text-wrapper-30">Hitler1945</div>
+                <div className="text-wrapper-30">{username}</div>
               </div>
               <div className="group-5">
                 <div className="text-wrapper-40">Email:</div>
@@ -66,7 +71,7 @@ export const Profile = () => {
 
         <div className="toolbar">
         <svg className="male-user" alt="Male user" src="male-user.png" />
-        <div className="text-wrapper">Hitler1945</div>
+        <div className="text-wrapper">{username}</div>
         <svg className="line3" alt="Line" src="line-3.svg" />
         <Link to="/Profile">
         <div className="ProfileLink">

@@ -1,5 +1,6 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect,useContext} from 'react';
 import axios from 'axios';
+import { UserContext } from "../UserContext";
 import ReactPlayer from 'react-player';
 import './Plank.css';
 import { Link } from 'react-router-dom';
@@ -9,6 +10,8 @@ const url = 'http://localhost:3000/';
 
 export const Plank = () => {
   const [response, setResponse] = useState('');
+  const { username } = useContext(UserContext);
+
 
   const handleClick = async () => {
     try {
@@ -33,7 +36,8 @@ export const Plank = () => {
 
         <div className="overlap100">
           <p className="p">
-          A plank is a core strengthening exercise that involves maintaining a position similar to a push-up for the maximum possible time. The most common form is the forearm plank, where you hold your body in a straight line from head to heels, supported by your forearms and toes. This exercise targets the abdominal muscles, back, shoulders, and glutes.          </p>
+            Crunches are a core-strengthening exercise that primarily targets the abdominal muscles, particularly the rectus abdominis, which is the "six-pack" muscle. They are a popular choice for building core strength and improving overall fitness.
+          </p>
 
           <div className="overlap-group" onClick={handleClick}>
             <div className="frame">
@@ -42,7 +46,7 @@ export const Plank = () => {
             </div>
           </div>
 
-          <video className="group" alt="exer" src="./cur.mp4" controls />
+          <video className="group" alt="exer" src="./crunches.mp4" controls />
           </div>
 
         <svg className="m" alt="M" src="m.svg" />
@@ -57,7 +61,7 @@ export const Plank = () => {
 
         <div className="toolbar">
         <svg className="male-user" alt="Male user" src="male-user.png" />
-        <div className="text-wrapper">Hitler1945</div>
+        <div className="text-wrapper">{username}</div>
         <svg className="line3" alt="Line" src="line-3.svg" />
         <Link to="/Profile">
         <div className="ProfileLink">

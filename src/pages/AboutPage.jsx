@@ -1,11 +1,17 @@
 import React from "react";
+import { useContext } from "react";
+
 import "./AboutStyles.css";
 import { Link } from 'react-router-dom';
+import { UserContext } from "../UserContext";
+
 import { Helmet } from 'react-helmet';
 const url = 'http://localhost:3000/';
 
 
 export const About = () => {
+  const { username } = useContext(UserContext);
+
 
   return (
     <div className="dektop">
@@ -65,7 +71,7 @@ Technically, the project utilizes a stack comprising React.js for the front-end 
 
         <div className="toolbar">
         <svg className="male-user" alt="Male user" src="male-user.png" />
-        <div className="text-wrapper">Hitler1945</div>
+        <div className="text-wrapper">{username}</div>
         <svg className="line3" alt="Line" src="line-3.svg" />
         <Link to="/Profile">
         <div className="ProfileLink">

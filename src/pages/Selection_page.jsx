@@ -1,17 +1,21 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import { Helmet } from 'react-helmet';
 import axios from "axios";
 import "./style1.css";
 import { Link } from 'react-router-dom';
+import { UserContext } from "../UserContext";
 
 
 
 
 
 export const Selection_page = () => {
-  const [username, setUsername] = useState('');
+  //const [username, setUsername] = useState('');
   const [response, setResponse] = useState('');
+  const {setUsername} = useContext(UserContext);
+  const { username } = useContext(UserContext);
+
 
   const Squat = async () => {
     try {
@@ -180,10 +184,10 @@ export const Selection_page = () => {
                 </div>
           </Link>
 
-          <Link to="/Plank">
+          <Link to="/Crunch">
                 <div className="overlap-plank">
                   <div className="text-wrapper-400">Crunches</div>
-                  <svg className="image-plank" alt="" src="plank.png" />     
+                  <svg className="image-plank" alt="" src="crunches.png" />     
                   <div className="overlap-group">
                     <Link to="/selection">
                       <div className = "hidden" onClick={crunch}> {/* change the HandleClick fun() */}
@@ -296,7 +300,7 @@ export const Selection_page = () => {
 <svg className="m" alt="M" src="m.svg" />
         <div className="header">
         <div className="text-wrapper-1">Workouts</div>
-      <div className="text-wrapper-2">Hi Hitler1945,</div>
+      <div className="text-wrapper-2">Hi {username}</div>
           <Link to="/selection">
           <svg className="m-2" alt="M" src="s-m.png" />
           </Link>
@@ -305,7 +309,7 @@ export const Selection_page = () => {
 
         <div className="toolbar">
         <svg className="male-user" alt="Male user" src="male-user.png" />
-        <div className="text-wrapper">Hitler1945</div>
+        <div className="text-wrapper">{username}</div>
         <svg className="line3" alt="Line" src="line-3.svg" />
         <Link to="/Profile">
         <div className="ProfileLink">

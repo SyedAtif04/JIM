@@ -1,4 +1,5 @@
-import React,{ useState, useEffect} from "react";
+import React,{ useState, useEffect,useContext} from "react";
+import { UserContext } from "../UserContext";
 import "./tri.css";
 import axios from 'axios';
 import ReactPlayer from 'react-player';
@@ -9,6 +10,8 @@ const url = 'http://localhost:3000/';
 
 export const Tricep = () => {
   const [response, setResponse] = useState('');
+  const { username } = useContext(UserContext);
+
 
   const handleClick = async () => {
     try {
@@ -31,7 +34,7 @@ export const Tricep = () => {
     </Helmet>
         <div className="div">
           <svg className="m" alt="M" src="m.svg" />
-          <div className="overlap">
+          <div className="overlap100">
             <p className="p">
             A tricep pulldown, also known as a tricep pushdown, is an isolation exercise targeting the triceps muscles, particularly the triceps brachii. It's typically performed using a cable machine with a high pulley.          </p>
             
@@ -42,7 +45,7 @@ export const Tricep = () => {
               </div>
             </div>
             
-            <video className="group" alt="exer" src="./cur.mp4" controls />
+            <video className="group" alt="exer" src="./tri.mp4" controls />
 
           </div>
           <div className="header">
@@ -56,7 +59,7 @@ export const Tricep = () => {
   
           <div className="toolbar">
           <svg className="male-user" alt="Male user" src="male-user.png" />
-          <div className="text-wrapper">Hitler1945</div>
+          <div className="text-wrapper">{username}</div>
           <svg className="line3" alt="Line" src="line-3.svg" />
           <Link to="/Profile">
           <div className="ProfileLink">

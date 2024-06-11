@@ -12,25 +12,28 @@ import { MyWorkout } from "./pages/MyWorkout";
 import { Profile } from "./pages/Profile";
 import { LateralRaises } from "./pages/LateralRaises";
 import { Plank } from "./pages/Plank";
+import { UserContext, UserProvider } from "./UserContext";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/selection" element={<Selection_page />} />
-        <Route path="/shoulder" element={<Shoulder />} />
-        <Route path="/bic" element={<Bic_curl />} />
-        <Route path="/squat" element={<Squat />} />
-        <Route path="/tri" element={<Tricep />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/MyWorkout" element={<MyWorkout />} />
-        <Route path="/Profile" element={<Profile />} />
-        <Route path="/LateralRaises" element={<LateralRaises />} />
-        <Route path="/Plank" element={<Plank />} />
-      </Routes>
-    </Router>
+    <UserProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/selection" element={<Selection_page />} />
+          <Route path="/shoulder" element={<Shoulder />} />
+          <Route path="/bic" element={<Bic_curl />} />
+          <Route path="/squat" element={<Squat />} />
+          <Route path="/tri" element={<Tricep />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/MyWorkout" element={<MyWorkout />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/LateralRaises" element={<LateralRaises />} />
+          <Route path="/Crunch" element={<Plank />} />
+        </Routes>
+      </Router>
+    </UserProvider>
   );
 }
 

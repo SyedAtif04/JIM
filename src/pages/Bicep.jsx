@@ -1,4 +1,6 @@
-import React,{ useState, useEffect} from "react";
+import React,{ useState, useEffect, useContext} from "react";
+import { UserContext } from "../UserContext";
+
 import "./cur.css";
 import axios from 'axios';
 import ReactPlayer from 'react-player';
@@ -9,6 +11,8 @@ const url = 'http://localhost:3000/';
 
 export const Bic_curl = () => {
   const [response, setResponse] = useState('');
+  const { username } = useContext(UserContext);
+
 
   const handleClick = async () => {
     try {
@@ -59,7 +63,7 @@ export const Bic_curl = () => {
 
         <div className="toolbar">
         <svg className="male-user" alt="Male user" src="male-user.png" />
-        <div className="text-wrapper">Hitler1945</div>
+        <div className="text-wrapper">{username}</div>
         <svg className="line3" alt="Line" src="line-3.svg" />
         <Link to="/Profile">
         <div className="ProfileLink">

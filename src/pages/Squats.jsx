@@ -1,5 +1,6 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect,useContext} from 'react';
 import axios from 'axios';
+import { UserContext } from "../UserContext";
 import ReactPlayer from 'react-player';
 import './Squats.css';
 import { Link } from 'react-router-dom';
@@ -9,6 +10,8 @@ const url = 'http://localhost:3000/';
 
 export const Squat = () => {
   const [response, setResponse] = useState('');
+  const { username } = useContext(UserContext);
+
 
   const handleClick = async () => {
     try {
@@ -43,7 +46,7 @@ export const Squat = () => {
             </div>
           </div>
 
-          <video className="group" alt="exer" src="./cur.mp4" controls />
+          <video className="group" alt="exer" src="./squat.mp4" controls />
           </div>
 
         <svg className="m" alt="M" src="m.svg" />
@@ -58,7 +61,7 @@ export const Squat = () => {
 
         <div className="toolbar">
         <svg className="male-user" alt="Male user" src="male-user.png" />
-        <div className="text-wrapper">Hitler1945</div>
+        <div className="text-wrapper">{username}</div>
         <svg className="line3" alt="Line" src="line-3.svg" />
         <Link to="/Profile">
         <div className="ProfileLink">

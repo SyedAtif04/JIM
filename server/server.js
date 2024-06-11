@@ -2,9 +2,11 @@
 const express = require("express");
 const mysql = require("mysql2");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const SECRET_KEY = "your_secret_key"; // Store this in an environment variable for production
 
 // Database connection
 const db = mysql.createConnection({
@@ -16,6 +18,19 @@ const db = mysql.createConnection({
 
 // Middleware
 app.use(express.json());
+
+// Middleware to authenticate JWT
+const authenticateJWT = (req, res, next) => {
+  if (!token) return res.status(403).send("Access denied.");
+
+  try {
+    const verified = jwt.verify(token, SECRET_KEY);
+    req.user = verified;
+    next();
+  } catch (err) {
+    res.status(401).send("Invalid token.");
+  }
+};
 
 // Routes
 // register route
@@ -71,13 +86,21 @@ app.post("/login", async (req, res) => {
           return res.status(401).json({ message: "Invalid credentials" });
         }
 
-        res.status(200).json({ message: "Login successful" });
+        res.status(200).json({
+          message: "Login successful",
+          token,
+          username: user.username,
+        });
       }
     );
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
+});
+//protected routes
+app.get("/protected", authenticateJWT, (req, res) => {
+  res.status(200).json({ message: "Protected content" });
 });
 
 // Start server
