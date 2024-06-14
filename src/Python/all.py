@@ -678,8 +678,39 @@ def bicep_curl_detection():
             mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
                                        mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=2),
                                        mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2))
+            
+            # Resizeable window
+            cv2.namedWindow('Bicep Curl Detection', cv2.WINDOW_NORMAL)
+            cv2.resizeWindow('Bicep Curl Detection', 1800, 1200)  # Set the initial size of the window
 
-            cv2.imshow('Bicep Curl Detection', image)
+            # Get the current window size
+            _, _, window_width, window_height = cv2.getWindowImageRect('Bicep Curl Detection')
+
+            # Calculate the aspect ratio of the frame
+            frame_height, frame_width = image.shape[:2]
+            aspect_ratio = frame_width / frame_height
+
+            # Calculate new dimensions to maintain aspect ratio
+            new_width = window_width
+            new_height = int(new_width / aspect_ratio)
+            if new_height > window_height:
+                new_height = window_height
+                new_width = int(new_height * aspect_ratio)
+
+            # Resize the image to fit the window while maintaining aspect ratio
+            resized_image = cv2.resize(image, (new_width, new_height))
+
+            # Create a black canvas of the window size
+            canvas = np.zeros((window_height, window_width, 3), dtype=np.uint8)
+
+            # Calculate padding to center the resized image on the canvas
+            x_offset = (window_width - new_width) // 2
+            y_offset = (window_height - new_height) // 2
+
+            # Place the resized image on the canvas
+            canvas[y_offset:y_offset + new_height, x_offset:x_offset + new_width] = resized_image
+
+            cv2.imshow('Bicep Curl Detection', canvas)
 
             if cv2.waitKey(10) & 0xFF == ord('q'):
                 break
@@ -821,8 +852,114 @@ def squats():
     threading.Thread(target=squats_detection).start()
     return jsonify({"status": "Squats Detection started"}), 200
 
-# Flask Application Runner
-if __name__ == "__main__":
+def tricep_pushdowns():
+    cap = cv2.VideoCapture(0)
+
+    # Triceps counter variables
+    counter = 0
+    stage = None
+
+    with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
+        while cap.isOpened():
+            ret, frame = cap.read()
+            frame = cv2.flip(frame, 1)
+            if not ret:
+                break
+
+            # Recolor image to RGB
+            image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            image.flags.writeable = False
+
+            # Make detection
+            results = pose.process(image)
+
+            # Recolor back to BGR
+            image.flags.writeable = True
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+
+            # Extract landmarks
+            try:
+                landmarks = results.pose_landmarks.landmark
+                
+                # Get coordinates for shoulders, elbows, and wrists
+                shoulder_l = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x, landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
+                elbow_l = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x, landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y]
+                wrist_l = [landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x, landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y]
+                
+                shoulder_r = [landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y]
+                elbow_r = [landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].y]
+                wrist_r = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y]
+
+                # Calculate angles for triceps extension
+                angle_l = calculate_angle(shoulder_l, elbow_l, wrist_l)
+                angle_r = calculate_angle(shoulder_r, elbow_r, wrist_r)
+
+                # Triceps counter logic
+                prev_stage = None  # Variable to keep track of the previous stage
+
+# Triceps counter logic
+                if angle_l > 160 and angle_r > 160:
+                    stage = "extending"
+                else:  # If not extending
+                    stage = "contracting"
+
+                if prev_stage == "contracting" and stage == "extending":
+                    counter += 1
+                    print("Triceps Count:", counter)
+
+                prev_stage = stage  # Update previous stage             
+                    
+                # Check if arms are folded
+                if angle_l < 30 and angle_r < 30:
+                    cv2.putText(image, 'Do not fold your arms!', (50, 50),
+                                cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
+                    
+            except:
+                pass
+
+            # Render triceps counter
+            # Setup status box
+            cv2.rectangle(image, (0, 0), (320, 83), (245, 117, 16), -1)
+
+            # Reps data
+            cv2.putText(image, 'REPS', (15, 12),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
+            cv2.putText(image, str(counter),
+                        (18, 70),
+                        cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255, 255, 255), 2, cv2.LINE_AA)
+
+            # Stage data
+            cv2.putText(image, 'STAGE', (165, 12),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
+            cv2.putText(image, stage,
+                        (120, 70),
+                        cv2.FONT_HERSHEY_SIMPLEX, 1.2, (255, 255, 255), 2, cv2.LINE_AA)
+
+            # Render detections
+            mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
+                                       mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=2),
+                                       mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2)
+                                       )
+
+            cv2.imshow('Triceps Detection', image)
+
+            if cv2.waitKey(10) & 0xFF == ord('q'):
+                break
+
+    # Release resources
+    cap.release()
+    cv2.destroyAllWindows()
+
+@app.route('/tricep_pushdowns', methods=['POST'])
+def run_detection():
+    try:
+        tricep_pushdowns()
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)})
+
+if __name__ == '__main__':
     app.run(debug=True)
+
 
 

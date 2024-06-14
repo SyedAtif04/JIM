@@ -21,7 +21,10 @@ app.use(express.json());
 
 // Middleware to authenticate JWT
 const authenticateJWT = (req, res, next) => {
-  if (!token) return res.status(403).send("Access denied.");
+  const authHeader = req.headers.authorization;
+  if (!authHeader) return res.status(403).send("Access denied.");
+
+  const token = authHeader.split(" ")[1];
 
   try {
     const verified = jwt.verify(token, SECRET_KEY);
@@ -33,7 +36,7 @@ const authenticateJWT = (req, res, next) => {
 };
 
 // Routes
-// register route
+// Register route
 app.post("/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -86,9 +89,16 @@ app.post("/login", async (req, res) => {
           return res.status(401).json({ message: "Invalid credentials" });
         }
 
+        // Generate JWT token
+        const token = jwt.sign(
+          { id: user.id, username: user.username },
+          SECRET_KEY,
+          { expiresIn: "1h" }
+        );
+
         res.status(200).json({
           message: "Login successful",
-          token,
+          token, // Include the generated token in the response
           username: user.username,
         });
       }
@@ -98,7 +108,8 @@ app.post("/login", async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
-//protected routes
+
+// Protected route
 app.get("/protected", authenticateJWT, (req, res) => {
   res.status(200).json({ message: "Protected content" });
 });

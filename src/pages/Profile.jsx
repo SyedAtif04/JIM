@@ -44,10 +44,13 @@ export const Profile = () => {
             </div>
           </div>
           <div className="overlap-group-wrapper">
+          <Link to="/Profile">
             <div className="photo">
               <div className="text-wrapper-80">change photo</div>
               <svg className="male-user2" alt="Male user" src="male-user.png" />
             </div>
+            </Link>
+
           </div>
           <Link to="/">
           <div className="overlap-wrapper">

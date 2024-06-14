@@ -300,7 +300,7 @@ export const Selection_page = () => {
 <svg className="m" alt="M" src="m.svg" />
         <div className="header">
         <div className="text-wrapper-1">Workouts</div>
-      <div className="text-wrapper-2">Hi {username}</div>
+      <div className="text-wrapper-2">Hi {username},</div>
           <Link to="/selection">
           <svg className="m-2" alt="M" src="s-m.png" />
           </Link>

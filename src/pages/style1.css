@@ -780,14 +780,14 @@
 }
 
 .selection-page .image-lat {
-  height: 144px;
+  height: 154px;
   left: 585px;
   object-fit: cover;
   position: absolute;
-  top: 20px;
+  top: 30px;
   width: 157px;
   background-image:url("./lateral.raises.png");
-  background-size: 100% 100%;
+  background-size: 100% 80%;
   background-repeat: no-repeat;
 }
 
@@ -1025,7 +1025,7 @@
 
 .selection-page .header {
   height: 150px; /* Typical toolbar height */
-  left: 28vw;
+  left: 25vw;
   position: fixed;
   top: 0;
   width: 100%; /* Full width of the viewport */
